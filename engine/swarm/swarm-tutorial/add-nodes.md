@@ -12,8 +12,8 @@ to add worker nodes.
     This tutorial uses the name `worker1`.
 
 2.  Run the command produced by the `docker swarm init` output from the
-    [Create a swarm](create-swarm.md) tutorial step to create a worker node
-    joined to the existing swarm:
+    [Create a swarm](create-swarm.md) tutorial step to <span class='important'>create a worker node
+    joined to the existing swarm</span>:
 
     ```bash
     $ docker swarm join \

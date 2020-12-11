@@ -5,7 +5,7 @@ title: Deploy a service to the swarm
 notoc: true
 ---
 
-After you [create a swarm](create-swarm.md), you can deploy a service to the
+After you [create a swarm](create-swarm.md), you can <span class='definition'>deploy a service</span> to the
 swarm. For this tutorial, you also [added worker nodes](add-nodes.md), but that
 is not a requirement to deploy a service.
 
@@ -20,13 +20,13 @@ is not a requirement to deploy a service.
     9uk4639qpg7npwf3fn2aasksr
     ```
 
-    * The `docker service create` command creates the service.
+    * The<span class='definition'> `docker service create`</span> command creates the service.
     * The `--name` flag names the service `helloworld`.
     * The `--replicas` flag specifies the desired state of 1 running instance.
     * The arguments `alpine ping docker.com` define the service as an Alpine
     Linux container that executes the command `ping docker.com`.
 
-3.  Run `docker service ls` to see the list of running services:
+3.  Run `docker service ls` to <span class='definition'>see the list of running services</span>:
 
     ```bash
     $ docker service ls

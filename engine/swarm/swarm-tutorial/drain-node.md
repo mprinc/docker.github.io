@@ -5,19 +5,19 @@ title: Drain a node on the swarm
 notoc: true
 ---
 
-In earlier steps of the tutorial, all the nodes have been running with `ACTIVE`
-availability. The swarm manager can assign tasks to any `ACTIVE` node, so up to
+In earlier steps of the tutorial, all the nodes have been running with <span class='definition'>`ACTIVE`
+availability</span>. The <span class='important'>swarm manager can assign tasks to any `ACTIVE` node</span>, so up to
 now all nodes have been available to receive tasks.
 
-Sometimes, such as planned maintenance times, you need to set a node to `DRAIN`
-availability. `DRAIN` availability  prevents a node from receiving new tasks
-from the swarm manager. It also means the manager stops tasks running on the
-node and launches replica tasks on a node with `ACTIVE` availability.
+Sometimes, such as <span class='important'>planned maintenance times</span>, you need to set a node to `DRAIN`
+availability. <span class='definition'>`DRAIN` availability</span>  prevents a node from receiving new tasks
+from the swarm manager. It also means the <span class='important'>manager stops tasks running on the
+node</span> and launches replica tasks on a node with `ACTIVE` availability.
 
-> **Important**: Setting a node to `DRAIN` does not remove standalone containers from that node,
+> **Important**: Setting a node to `DRAIN` <span class='important'>does not remove standalone containers</span> from that node,
 > such as those created with `docker run`, `docker-compose up`, or the Docker Engine
 > API. A node's status, including `DRAIN`, only affects the node's ability to schedule
-> swarm service workloads.
+> <span class='important'>swarm service workloads</span>.
 {:.important}
 
 1.  If you haven't already, open a terminal and ssh into the machine where you
@@ -59,7 +59,7 @@ tasks to different nodes:
     In this case the swarm manager distributed one task to each node. You may
     see the tasks distributed differently among the nodes in your environment.
 
-5.  Run `docker node update --availability drain <NODE-ID>` to drain a node that
+5.  Run `docker node update --availability drain <NODE-ID>` to <span class='definition'>drain a node</span> that
 had a task assigned to it:
 
     ```bash
@@ -68,7 +68,7 @@ had a task assigned to it:
     worker1
     ```
 
-6.  Inspect the node to check its availability:
+6.  <span class='definition'>Inspect the node</span> to check its availability:
 
     ```bash
     $ docker node inspect --pretty worker1
@@ -101,7 +101,7 @@ task assignments for the `redis` service:
     availability.
 
 8.  Run  `docker node update --availability active <NODE-ID>` to return the
-drained node to an active state:
+drained node <span class='definition'>to an active state</span>:
 
     ```bash
     $ docker node update --availability active worker1

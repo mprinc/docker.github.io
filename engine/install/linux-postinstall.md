@@ -13,12 +13,12 @@ better with Docker.
 
 ## Manage Docker as a non-root user
 
-The Docker daemon binds to a Unix socket instead of a TCP port. By default
+The <span class='definition'>Docker daemon</span> binds to a <span class='definition'>Unix socket</span> instead of a TCP port. By default
 that Unix socket is owned by the user `root` and other users can only access it
 using `sudo`. The Docker daemon always runs as the `root` user.
 
-If you don't want to preface the `docker` command with `sudo`, create a Unix
-group called `docker` and add users to it. When the Docker daemon starts, it
+<span class='important'>If you don't want to preface the `docker` command with `sudo`</span>, create a <span class='definition'>Unix
+group called `docker`</span> and add users to it. When the Docker daemon starts, it
 creates a Unix socket accessible by members of the `docker` group.
 
 > Warning
@@ -35,7 +35,7 @@ creates a Unix socket accessible by members of the `docker` group.
 >
 > Rootless mode is currently available as an experimental feature.
 
-To create the `docker` group and add your user:
+To <span class='definition'>create the `docker` group</span> and add your user:
 
 1.  Create the `docker` group.
 
@@ -55,7 +55,7 @@ To create the `docker` group and add your user:
     
     On a desktop Linux environment such as X Windows, log out of your session completely and then log back in.
     
-    On Linux, you can also run the following command to activate the changes to groups:
+    On Linux, you can also run the following command to <span class='definition'>activate the changes to groups</span>:
     
     ```bash 
     $ newgrp docker 
@@ -70,9 +70,9 @@ To create the `docker` group and add your user:
     This command downloads a test image and runs it in a container. When the
     container runs, it prints an informational message and exits.
 
-    If you initially ran Docker CLI commands using `sudo` before adding
-    your user to the `docker` group, you may see the following error,
-    which indicates that your `~/.docker/` directory was created with
+    <span class='important'>If you initially ran Docker CLI commands using `sudo` before adding
+    your user to the `docker` group</span>, you may see the following error,
+    which indicates that your <span class='important'>`~/.docker/` directory</span> was created with
     incorrect permissions due to the `sudo` commands.
 
     ```none

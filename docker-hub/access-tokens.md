@@ -4,17 +4,18 @@ description: Learn how to create and manage your personal Docker Hub access toke
 keywords: docker hub, hub, security, PAT, personal access token
 ---
 
-Docker Hub lets you create personal access tokens as alternatives to your password. You can use tokens to access Hub images from the Docker CLI.
+Docker Hub lets you create <span class='definition'>personal access tokens</span> as <span class='important'>alternatives to your password</span>. You can use tokens to access Hub images from the Docker CLI.
 
 Using personal access tokens provides some advantages over a password:
-* You can investigate when an access token was used last, and disable or delete it if you find any suspicious activity.
-* When logged in with an access token, you can't perform any admin activity on the account, including changing the password.
+* You can <span class='important'>investigate</span> when an access token was used last, and disable or delete it if you find any suspicious activity.
+* When logged in with an access token, you <span class='definition'>can't perform any admin activity</span> on the account, including changing the password.
+<span class='error' data-replacement='' data-comment='Additional benefit is safety when logging in from console, much less risk'></span>
 
-Access tokens are also useful in building integrations, since you can issue
+Access tokens are also useful in <span class='definition'>building integrations</span>, since you can issue
 multiple tokens &ndash; one for each integration &ndash; and revoke them at
 any time.
 
-> Note: If you have [two-factor authentication (2FA)](/docker-hub/2fa) enabled on your account, you must create at least one personal access token. Otherwise, you will be unable to log in to your account from the Docker CLI.
+> Note: If you have <span class='definition'>[two-factor authentication (2FA)](/docker-hub/2fa)</span> enabled on your account, you must create <span class='important'>at least one personal access token</span>. Otherwise, you will be unable to log in to your account from the Docker CLI.
 {: .important }
 
 ## Create an access token

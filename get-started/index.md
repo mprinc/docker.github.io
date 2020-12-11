@@ -75,30 +75,30 @@ deploying applications is.
 Containerization is increasingly popular because containers are:
 
 - **Flexible**: Even the most complex applications can be containerized.
-- **Lightweight**: Containers leverage and share the host kernel,
+- **Lightweight**: Containers leverage and <span class='important'>share the host kernel</span>,
   making them much more efficient in terms of system resources than virtual machines.
 - **Portable**: You can build locally, deploy to the cloud, and run anywhere.
-- **Loosely coupled**: Containers are highly self sufficient and encapsulated,
+- **Loosely coupled**: Containers are highly <span class='important'>self sufficient and encapsulated</span>,
   allowing you to replace or upgrade one without disrupting others.
-- **Scalable**: You can increase and automatically distribute container replicas across a datacenter.
-- **Secure**: Containers apply aggressive constraints and isolations to processes without any configuration required on the part of the user.
+- **Scalable**: You can <span class='important'>increase and automatically distribute container replicas</span> across a datacenter.
+- **Secure**: Containers apply <span class='important'>aggressive constraints and isolations</span> to processes without any configuration required on the part of the user.
 
 ### Images and containers
 
-Fundamentally, a container is nothing but a running process,
-with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers.
-One of the most important aspects of container isolation is that each container interacts with its own private filesystem; this filesystem is provided by a Docker **image**.
-An image includes everything needed to run an application - the code or binary,
-runtimes, dependencies, and any other filesystem objects required.
+Fundamentally, a container is <span class='important'>nothing but a running process</span>,
+with some <span class='important'>added encapsulation features</span> applied to it in order to keep it isolated from the host and from other containers.
+One of the most important aspects of container isolation is that each container interacts with its <span class='definition'>own private filesystem</span>; this filesystem is provided by a Docker **image**.
+An <span class='definition'>image</span> includes everything needed to run an application - <span class='important'>the code or binary,
+runtimes, dependencies, and any other filesystem objects required</span>.
 
 ### Containers and virtual machines
 
-A container runs _natively_ on Linux and shares the kernel of the host
-machine with other containers. It runs a discrete process, taking no more memory
+A container runs _natively_ on Linux and <span class='important'>shares the kernel of the host
+machine with other containers</span>. It runs a <span class='important'>discrete process</span>, taking no more memory
 than any other executable, making it lightweight.
 
-By contrast, a **virtual machine** (VM) runs a full-blown "guest" operating
-system with _virtual_ access to host resources through a hypervisor. In general,
+By contrast, a <span class='definition'>**virtual machine** (VM)</span> runs a <span class='important'>full-blown "guest" operating</span>
+system with _virtual_ access to host resources through a <span class='definition'>hypervisor</span>. In general,
 VMs incur a lot of overhead beyond what is being consumed by your application logic.
 
 ![Container stack example](/images/Container%402x.png){:width="300px"} | ![Virtual machine stack example](/images/VM%402x.png){:width="300px"}
@@ -141,9 +141,9 @@ Docker version 19.03.5, build 633a0ea
         ...
     ```
 
-2.  Run `docker image ls` to list the `hello-world` image that you downloaded to your machine.
+2.  Run `docker image ls` to <span class='definition'>list</span> the `hello-world` image that you downloaded to your machine.
 
-3.  List the `hello-world` container (spawned by the image) which exits after displaying its message. If it is still running, you do not need the `--all` option:
+3.  <span class='definition'>List the `hello-world` container</span> (spawned by the image) which exits after displaying its message. If it is still running, you do not need the `--all` option:
 
     ```shell
         $ docker ps --all

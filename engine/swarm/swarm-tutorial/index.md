@@ -95,8 +95,8 @@ The IP address must be assigned to a network interface available to the host
 operating system. All nodes in the swarm need to connect to the manager at
 the IP address.
 
-Because other nodes contact the manager node on its IP address, you should use a
-fixed IP address.
+<span class='important'>Because other nodes contact the manager node on its IP address, you should use a
+fixed IP address.</span>
 
 You can run `ifconfig` on Linux or macOS to see a list of the
 available network interfaces.
@@ -109,13 +109,13 @@ The tutorial uses `manager1` : `192.168.99.100`.
 
 ### Open protocols and ports between the hosts
 
-The following ports must be available. On some systems, these ports are open by default.
+The following <span class='important'>ports</span> must be available. On some systems, these ports are open by default.
 
-* **TCP port 2377** for cluster management communications
-* **TCP** and **UDP port 7946** for communication among nodes
-* **UDP port 4789** for overlay network traffic
+* **TCP port 2377** for <span class='definition'>cluster management</span> communications
+* **TCP** and **UDP port 7946** for communication <span class='definition'>among nodes</span>
+* **UDP port 4789** for <span class='definition'>overlay network</span> traffic
 
-If you plan on creating an overlay network with encryption (`--opt encrypted`),
+If you plan on creating an <span class='definition'>overlay network with encryption</span> (`--opt encrypted`),
 you also need to ensure **ip protocol 50** (**ESP**) traffic is allowed.
 
 ## What's next?

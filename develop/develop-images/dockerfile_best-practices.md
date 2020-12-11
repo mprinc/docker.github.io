@@ -14,7 +14,7 @@ This document covers recommended best practices and methods for building
 efficient images.
 
 Docker builds images automatically by reading the instructions from a
-`Dockerfile` -- a text file that contains all commands, in order, needed to
+<span class='definition'>`Dockerfile`</span> -- a text file that contains all commands, in order, needed to
 build a given image. A `Dockerfile` adheres to a specific format and set of
 instructions which you can find at [Dockerfile reference](../../engine/reference/builder.md).
 

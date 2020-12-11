@@ -6,13 +6,13 @@ notoc: true
 ---
 
 The remaining steps in the tutorial don't use the `helloworld` service, so now
-you can delete the service from the swarm.
+you can <span class='definition'>delete the service from the swarm</span>.
 
 1.  If you haven't already, open a terminal and ssh into the machine where you
     run your manager node. For example, the tutorial uses a machine named
     `manager1`.
 
-2.  Run `docker service rm helloworld` to remove the `helloworld` service.
+2.  Run `docker service rm helloworld` to <span class='definition'>remove</span> the `helloworld` service.
 
     ```bash
     $ docker service rm helloworld
@@ -20,7 +20,7 @@ you can delete the service from the swarm.
     helloworld
     ```
 
-3.  Run `docker service inspect <SERVICE-ID>` to verify that the swarm manager
+3.  Run `docker service inspect <SERVICE-ID>` to <span class='definition'>verify</span> that the swarm manager
     removed the service. The CLI returns a message that the service is not
     found:
 
@@ -30,8 +30,8 @@ you can delete the service from the swarm.
     Error: no such service: helloworld
     ```
 
-4.  Even though the service no longer exists, the task containers take a few
-    seconds to clean up. You can use `docker ps` on the nodes to verify when the
+4.  Even though the service no longer exists, <span class='important'>the task containers take a few
+    seconds to clean up</span>. You can use `docker ps` on the nodes to verify when the
     tasks have been removed.
 
     ```bash

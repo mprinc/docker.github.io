@@ -6,7 +6,7 @@ notoc: true
 ---
 
 When you have [deployed a service](deploy-service.md) to your swarm, you can use
-the Docker CLI to see details about the service running in the swarm.
+the Docker CLI to <span class='definition'>see details about the service</span> running in the swarm.
 
 1.  If you haven't already, open a terminal and ssh into the machine where you
     run your manager node. For example, the tutorial uses a machine named
@@ -86,8 +86,8 @@ the Docker CLI to see details about the service running in the swarm.
     ]
     ```
 
-4.  Run `docker service ps <SERVICE-ID>` to see which nodes are running the
-    service:
+4.  Run `docker service ps <SERVICE-ID>` to see <span class='definition'>which nodes are running the
+    service</span>:
 
     ```bash
     [manager1]$ docker service ps helloworld
@@ -97,15 +97,15 @@ the Docker CLI to see details about the service running in the swarm.
     ```
 
     In this case, the one instance of the `helloworld` service is running on the
-    `worker2` node. You may see the service running on your manager node. By
-    default, manager nodes in a swarm can execute tasks just like worker nodes.
+    `worker2` node. You may see the service running on your manager node. <span class='important'>By
+    default, manager nodes in a swarm can execute tasks just like worker nodes.</span>
 
-    Swarm also shows you the `DESIRED STATE` and `CURRENT STATE` of the service
-    task so you can see if tasks are running according to the service
+    Swarm also shows you the <span class='definition'>`DESIRED STATE` and `CURRENT STATE` of the service
+    task</span> so you can see if tasks are running according to the service
     definition.
 
-4.  Run `docker ps` on the node where the task is running to see details about
-    the container for the task.
+4.  Run `docker ps` on the node where the task is running to <span class='definition'>see details about
+    the container for the task</span>.
 
     >**Tip**: If `helloworld` is running on a node other than your manager node,
     you must ssh to that node.

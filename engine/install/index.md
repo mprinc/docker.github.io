@@ -87,8 +87,8 @@ and **nightly**:
 
 ### Stable
 
-Year-month releases are made from a release branch diverged from the master
-branch. The branch is created with format `<year>.<month>`, for example
+<span class='definition'>Year-month releases</span> are made from a release branch diverged from the master
+branch. <span class='important'>The branch is created with format `<year>.<month>`</span>, for example
 `18.09`. The year-month name indicates the earliest possible calendar
 month to expect the release to be generally available. All further patch
 releases are performed from that branch. For example, once `v18.09.0` is

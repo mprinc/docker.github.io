@@ -11,7 +11,7 @@
 <a href="/engine/api/v{{ controller_data.min_api_version }}/" target="_blank" class="_"><span class="badge badge-info" data-toggle="tooltip" data-placement="right" title="Open the {{ controller_data.min_api_version }} API reference (in a new window)">API {{ controller_data.min_api_version }}+</span></a>&nbsp;
 The client and daemon API must both be at least
 <a href="/engine/api/v{{ controller_data.min_api_version }}/" target="_blank" class="_">{{ controller_data.min_api_version }}</a>
-to use this command. Use the `docker version` command on the client to check
+to use this command. Use the <span class='definition'>`docker version`</span> command on the client to check
 your client and daemon API versions.
 
 {% endif %}

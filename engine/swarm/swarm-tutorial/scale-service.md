@@ -6,8 +6,8 @@ notoc: true
 ---
 
 Once you have [deployed a service](deploy-service.md) to a swarm, you are ready
-to use the Docker CLI to scale the number of containers in
-the service. Containers running in a service are called "tasks."
+to use the Docker CLI to <span class='definition'>scale the number of containers in
+the service</span>. <span class='important'>Containers running in a service are called "<span class='definition'>tasks</span>."</span>
 
 1.  If you haven't already, open a terminal and ssh into the machine where you
     run your manager node. For example, the tutorial uses a machine named
@@ -28,7 +28,7 @@ the service. Containers running in a service are called "tasks."
     helloworld scaled to 5
     ```
 
-3.  Run `docker service ps <SERVICE-ID>` to see the updated task list:
+3.  Run `docker service ps <SERVICE-ID>` to see the updated <span class='definition'>task list</span>:
 
     ```bash
     $ docker service ps helloworld
@@ -41,7 +41,7 @@ the service. Containers running in a service are called "tasks."
     helloworld.5.ba19kca06l18zujfwxyc5lkyn  alpine  worker2   Running        Running 24 seconds
     ```
 
-    You can see that swarm has created 4 new tasks to scale to a total of 5
+    You can see that <span class='important'>swarm has created 4 new tasks</span> to scale to a total of 5
     running instances of Alpine Linux. The tasks are distributed between the
     three nodes of the swarm. One is running on `manager1`.
 

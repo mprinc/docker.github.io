@@ -7,14 +7,14 @@ redirect_from:
 title: Create a base image
 ---
 
-Most Dockerfiles start from a parent image. If you need to completely control
+<span class='important'>Most Dockerfiles start from a <span class='definition'>parent image</span></span>. If you need to completely control
 the contents of your image, you might need to create a base image instead.
 Here's the difference:
 
 - A [parent image](../../glossary.md#parent_image) is the image that your
-  image is based on. It refers to the contents of the `FROM` directive in the
-  Dockerfile. Each subsequent declaration in the Dockerfile modifies this parent
-  image. Most Dockerfiles start from a parent image, rather than a base image.
+  image is based on. It refers to the contents of the <span class='definition'>`FROM` directive</span> in the
+  Dockerfile. <span class='important'>Each subsequent declaration in the Dockerfile modifies this parent
+  image</span>. Most Dockerfiles start from a parent image, rather than a base image.
   However, the terms are sometimes used interchangeably.
 
 - A [base image](../../glossary.md#base_image) has `FROM scratch` in its Dockerfile.

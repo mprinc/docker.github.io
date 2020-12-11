@@ -117,7 +117,7 @@ nodes are able to log into the registry and pull the image.
 
 ### Provide credential specs for managed service accounts
 
- In Enterprise Edition 3.0, security is improved through the centralized distribution and management of Group Managed Service Account(gMSA) credentials using Docker Config functionality. Swarm now allows using a Docker Config as a gMSA credential spec, which reduces the burden of distributing credential specs to the nodes on which they are used. 
+In Enterprise Edition 3.0, security is improved through the centralized distribution and management of Group Managed Service Account(gMSA) credentials using Docker Config functionality. Swarm now allows using a Docker Config as a gMSA credential spec, which reduces the burden of distributing credential specs to the nodes on which they are used. 
 
  **Note**: This option is only applicable to services using Windows containers.
 

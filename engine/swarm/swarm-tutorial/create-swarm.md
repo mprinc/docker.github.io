@@ -9,8 +9,8 @@ After you complete the [tutorial setup](index.md) steps, you're ready
 to create a swarm. Make sure the Docker Engine daemon is started on the host
 machines.
 
-1.  Open a terminal and ssh into the machine where you want to run your manager
-    node. This tutorial uses a machine named `manager1`. If you use Docker Machine,
+1.  Open a terminal and <span class='bold'>ssh</span> into the machine where you want to run your <span class='important'>manager
+    node</span>. This tutorial uses a machine named `manager1`. If you use Docker Machine,
     you can connect to it via SSH using the following command:
 
     ```bash
@@ -46,7 +46,7 @@ machines.
     To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
     ```
 
-    The `--advertise-addr` flag configures the manager node to publish its
+    <span class='definition'>The `--advertise-addr` flag</span> configures the manager node to publish its
     address as `192.168.99.100`. The other nodes in the swarm must be able
     to access the manager at the IP address.
 
@@ -82,8 +82,8 @@ machines.
 
     ```
 
-    The `*` next to the node ID indicates that you're currently connected on
-    this node.
+    The `*` next to the node ID indicates that you're <span class='important'>currently connected on
+    this node</span>.
 
     Docker Engine swarm mode automatically names the node for the machine host
     name. The tutorial covers other columns in later steps.

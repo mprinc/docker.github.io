@@ -9,9 +9,8 @@ redirect_from:
 title: Docker Engine overview
 ---
 
-Docker Engine is an open source containerization technology for building and
-containerizing your applications. Docker Engine acts as a client-server
-application with:
+<span class='definition'>Docker Engine</span> is an <span class='important'>open source containerization technology</span> for building and
+containerizing your applications. Docker Engine acts as a m with:
 
 * A server with a long-running daemon process [`dockerd`](/engine/reference/commandline/dockerd).
 * APIs which specify interfaces that programs can use to talk to and

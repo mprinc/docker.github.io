@@ -13,15 +13,15 @@ Work through the orientation and setup in [Part 1](index.md).
 ## Introduction
 
 Now that you've set up your development environment, thanks to Docker Desktop,
-you can begin to develop containerized applications. In general, the development workflow looks like this:
+you can begin to develop containerized applications. In general, <span class='definition'>the development workflow</span> looks like this:
 
 1. Create and test individual containers for each component of your application by first creating Docker images.
 2. Assemble your containers and supporting infrastructure into a complete application.
 3. Test, share, and deploy your complete containerized application.
 
-In this stage of the tutorial, let's focus on step 1 of this workflow: creating the images that your containers will be based on. Remember, a Docker image captures the private filesystem that your containerized processes will run in; you need to create an image that contains just what your application needs to run.
+In this stage of the tutorial, let's focus on step 1 of this workflow: <span class='definition'>creating the images</span> that your containers will be based on. Remember, a Docker image captures the private filesystem that your containerized processes will run in; you need to create an image that contains just what your application needs to run.
 
-> **Containerized development environments** are easier to set up than traditional development environments, once you learn how to build images as we'll discuss below. This is because a containerized development environment will isolate all the dependencies your app needs inside your Docker image; there's no need to install anything other than Docker on your development machine. In this way, you can easily develop applications for different stacks without changing anything on your development machine.
+> **Containerized development environments** are <span class='important'>easier to set up than traditional development environments</span>, once you learn how to build images as we'll discuss below. This is because a <span class='important'>containerized development environment will isolate all the dependencies your app needs inside your Docker image</span>; there's no need to install anything other than Docker on your development machine. In this way, you can easily develop applications for <span class='definition'>different stacks</span> without changing anything on your development machine.
 
 ## Set up
 
@@ -85,11 +85,11 @@ cd node-bulletin-board-master/bulletin-board-app
 <hr>
 </div>
 
-The `node-bulletin-board` project is a simple bulletin board application, written in Node.js. In this example, let's imagine you wrote this app, and are now trying to containerize it.
+The `node-bulletin-board` project is <span class='definition'>a simple bulletin board application</span>, written in Node.js. In this example, let's imagine you wrote this app, and are now trying to containerize it.
 
 ## Define a container with Dockerfile
 
-Take a look at the file called `Dockerfile` in the bulletin board application. Dockerfiles describe how to assemble a private filesystem for a container, and can also contain some metadata describing how to run a container based on this image. The bulletin board app Dockerfile looks like this:
+Take a look at the file called <span class='definition'>`Dockerfile`</span> in the bulletin board application. <span class='definition'>Dockerfiles</span> describe <span class='important'>how to assemble a private filesystem for a container</span>, and can also contain some metadata describing <span class='definition'>how to run a container</span> based on this image. The bulletin board app Dockerfile looks like this:
 
 ```dockerfile
 # Use the official image as a parent image.
