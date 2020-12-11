@@ -34,7 +34,7 @@ use unless you have substantial experience with ZFS on Linux.
   installed.
   - For Ubuntu 14.04, you need to enable a supplemental package repository
     `ppa:zfs-native/stable` before you can install the package. See
-    [https://launchpad.net/~zfs-native/+archive/ubuntu/stable](https://launchpad.net/~zfs-native/+archive/ubuntu/stable){: target="_blank" class="_" }
+    [https://launchpad.net/~zfs-native/+archive/ubuntu/stable](https://launchpad.net/~zfs-native/+archive/ubuntu/stable){: target="_blank" rel="noopener" class="_" }
     for instructions.
 - ZFS is not supported on Docker EE or CS-Engine, or any other Linux platforms.
 - The `/var/lib/docker/` directory must be mounted on a ZFS-formatted
@@ -44,7 +44,9 @@ use unless you have substantial experience with ZFS on Linux.
   and push existing images to Docker Hub or a private repository, so that you
   do not need to re-create them later.
 
-> **Note**: There is no need to use `MountFlags=slave` with Docker Engine 18.09 or
+> **Note**
+>
+> There is no need to use `MountFlags=slave` with Docker Engine 18.09 or
 > later because `dockerd` and `containerd` are in different mount namespaces. 
 
 ## Configure Docker with the `zfs` storage driver
@@ -212,7 +214,7 @@ When you start a container, the following steps happen in order:
 
 Each container's writable layer is a ZFS clone which shares all its data with
 the dataset it was created from (the snapshots of its parent layers). Read
-operations are fasst, even if the data being read is from a deep layer.
+operations are fast, even if the data being read is from a deep layer.
 This diagram illustrates how block sharing works:
 
 ![zfs block sharing](images/zpool_blocks.jpg)

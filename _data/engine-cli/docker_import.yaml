@@ -40,7 +40,7 @@ options:
   description: Set platform if server is multi-platform capable
   deprecated: false
   min_api_version: "1.32"
-  experimental: true
+  experimental: false
   experimentalcli: false
   kubernetes: false
   swarm: false
@@ -82,7 +82,7 @@ examples: |-
   ### Import from a local directory with new configurations
 
   ```bash
-  $ sudo tar -c . | docker import --change "ENV DEBUG true" - exampleimagedir
+  $ sudo tar -c . | docker import --change "ENV DEBUG=true" - exampleimagedir
   ```
 
   Note the `sudo` in this example – you must preserve

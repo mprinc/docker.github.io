@@ -4,7 +4,7 @@ keywords: fig, composition, compose, docker, orchestration, cli, reference
 title: Command-line completion
 ---
 
-Compose comes with [command completion](http://en.wikipedia.org/wiki/Command-line_completion)
+Compose comes with [command completion](https://en.wikipedia.org/wiki/Command-line_completion)
 for the bash and zsh shell.
 
 ## Install command completion
@@ -118,8 +118,6 @@ Enjoy working with Compose faster and with fewer typos!
 
 - [User guide](index.md)
 - [Installing Compose](install.md)
-- [Get started with Django](django.md)
-- [Get started with Rails](rails.md)
-- [Get started with WordPress](wordpress.md)
 - [Command line reference](reference/index.md)
 - [Compose file reference](compose-file/index.md)
+- [Sample apps with Compose](samples-for-compose.md)

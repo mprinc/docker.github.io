@@ -1,6 +1,6 @@
 # Docs @ Docker
-Welcome to the repo for our documentation. This is the source for	
-[https://docs.docker.com/](https://docs.docker.com/).	
+Welcome to the repo for our documentation. This is the source for
+[https://docs.docker.com/](https://docs.docker.com/).
 
 Feel free to send us pull requests and file issues. Our docs are completely	
 open source and we deeply appreciate contributions from our community!
@@ -10,10 +10,9 @@ open source and we deeply appreciate contributions from our community!
 - [Contributing](#contributing)
   - [Files not edited here](#files-not-edited-here)
   - [Overall doc improvements](#overall-doc-improvements)
-  - [Specific new features for a project](#specific-new-features-for-a-project)
 - [Per-PR staging on GitHub](#per-pr-staging-on-github)
-- [Staging the docs](#staging-the-docs)
-- [Read these docs offline](#read-these-docs-offline)
+- [Build and preview the docs locally](#build-and-preview-the-docs-locally)
+  - [Build the docs with deployment features enabled](#build-the-docs-with-deployment-features-enabled)
 - [Important files](#important-files)
 - [Relative linking for GitHub viewing](#relative-linking-for-github-viewing)
   - [Testing changes and practical guidance](#testing-changes-and-practical-guidance)
@@ -21,10 +20,6 @@ open source and we deeply appreciate contributions from our community!
   - [Creating tabs](#creating-tabs)
   - [Running in-page Javascript](#running-in-page-javascript)
   - [Images](#images)
-- [Beta content disclaimer](#beta-content-disclaimer)
-- [Accessing unsupported archived documentation](#accessing-unsupported-archived-documentation)
-- [Building archives and the live published docs](#building-archives-and-the-live-published-docs)
-- [Creating a new archive](#creating-a-new-archive)
 - [Copyright and license](#copyright-and-license)
 
 
@@ -68,145 +63,97 @@ in the `source:` key in the YAML file.
 
 ### Overall doc improvements
 
-Most commits will be made against the `master` branch. This include:
+Pull requests should be opened against the `master` branch, this includes:
 
 - Conceptual and task-based information not specific to new features
 - Restructuring / rewriting
 - Doc bug fixing
 - Typos and grammar errors
 
-One quirk of this project is that the `master` branch is where the live docs are
-published from, so upcoming features can't be documented there. See
-[Specific new features for a project](#specific-new-features-for-a-project)
-for how to document upcoming features. These feature branches will be periodically
-merged with `master`, so don't worry about fixing typos and documentation bugs
-there.
-
->Do you enjoy creating graphics? Good graphics are key to great documentation,
-and we especially value contributions in this area.
-
-### Specific new features for a project
-
-Our docs cover many projects which release at different times. **If, and only if,
-your pull request relates to a currently unreleased feature of a project, base
-your work on that project's `vnext` branch.** These branches were created by
-cloning `master` and then importing a project's `master` branch's docs into it
-(at the time of the migration), in a way that preserved the commit history. When
-a project has a release, its `vnext` branch will be merged into `master` and your
-work will be visible on [https://docs.docker.com/](https://docs.docker.com/).
-
-The following `vnext` branches currently exist:
-
-- **[vnext-engine](https://github.com/docker/docker.github.io/tree/vnext-engine):**
-  docs for upcoming features in the [docker/docker](https://github.com/moby/moby/)
-  project
-
-- **[vnext-compose](https://github.com/docker/docker.github.io/tree/vnext-compose):**
-  docs for upcoming features in the [docker/compose](https://github.com/docker/compose/)
-  project
-
-- **[vnext-distribution](https://github.com/docker/docker.github.io/tree/vnext-distribution):**
-  docs for upcoming features in the [docker/distribution](https://github.com/docker/distribution/)
-  project
-
-- **[vnext-swarm](https://github.com/docker/docker.github.io/tree/vnext-swarm):**
-  docs for upcoming features in the [docker/swarm](https://github.com/docker/swarm/)
-  project
-
-- **[vnext-toolbox](https://github.com/docker/docker.github.io/tree/vnext-toolbox):**
-  docs for upcoming features in the [docker/toolbox](https://github.com/docker/toolbox/)
-  project
+> Do you enjoy creating graphics? Good graphics are key to great documentation,
+> and we especially value contributions in this area.
 
 ## Per-PR staging on GitHub
 
-For every PR against `master` and all the long-lived branches, a staged version
-of the site is built using Netlify. If the site builds, you will see
-**deploy/netlify — Deploy preview ready**. Otherwise, you will see an error.
-Click **Details** to review the staged site or the errors that prevented it from
-building. Review the staged site and amend your commit if necessary. Reviewers
-will also check the staged site before merging the PR, to protect the integrity
-of [https://docs.docker.com/](https://docs.docker.com/).
+For every PR against `master`, a staged version of the site is built using Netlify.
+If the site builds, you will see **deploy/netlify — Deploy preview ready**.
+Otherwise, you will see an error. Click **Details** to review the staged site or
+the errors that prevented it from building. Review the staged site and amend your
+commit if necessary. Reviewers will also check the staged site before merging the
+PR, to protect the integrity of [https://docs.docker.com/](https://docs.docker.com/).
 
-## Staging the docs
+## Build and preview the docs locally
 
-You have three options:
+On your local machine, clone this repo:
 
-1.  On your local machine, clone this repo and run our staging container:
+```bash
+git clone --recursive https://github.com/docker/docker.github.io.git
+cd docker.github.io
+```
 
-    ```bash
-    git clone --recursive https://github.com/docker/docker.github.io.git
-    cd docker.github.io
-    docker-compose up
-    ```
+Then build and run the documentation with [Docker Compose](https://docs.docker.com/compose/)
 
-    If you haven't got Docker Compose installed,
-    [follow these installation instructions](https://docs.docker.com/compose/install/).
+```bash
+docker-compose up -d --build
+```
 
-    The container runs in the background and incrementally rebuilds the site each
-    time a file changes. You can keep your browser open to http://localhost:4000/
-    and refresh to see your changes. The container runs in the foreground, but
-    you can use `CTRL+C` to get the command prompt back. To stop the container,
-    issue the following command:
+> Docker Compose is included with [Docker Desktop](https://docs.docker.com/desktop/).
+> If you don't have Docker Compose installed, [follow these installation instructions](https://docs.docker.com/compose/install/).
 
-    ```bash
-    docker-compose down
-    ```
+Once the container is built and running, visit [http://localhost:4000](http://localhost:4000)
+in your web browser to view the docs.
 
-2.  Install Jekyll and GitHub Pages on your local machine.
+To rebuild the docs after you made changes, run the `docker-compose up` command
+again. This rebuilds the documentation, and updates the container with your changes:
 
-    a. Clone this repo by running:
+```bash
+docker-compose up -d --build
+```
 
-       ```bash
-       git clone --recursive https://github.com/docker/docker.github.io.git
-       ```
+Once the container is built and running, visit [http://localhost:4000](http://localhost:4000)
+in your web browser to view the docs.
 
-    b. Install Ruby 2.3 or later as described in [Installing Ruby](https://www.ruby-lang.org/en/documentation/installation/).
 
-    c. Install Bundler:
+To stop the staging container, use the `docker-compose down` command:
 
-       ```bash
-       gem install bundler
-       ```
+```bash
+docker-compose down
+```
 
-    d. If you use Ubuntu, install packages required for the Nokogiri HTML
-       parser:
+### Build the docs with deployment features enabled
 
-       ```bash
-       sudo apt-get install ruby-dev zlib1g-dev liblzma-dev
-       ```
+The default configuration for local builds of the documentation disables some
+features to allow for a shorter build-time. The following options differ between
+local builds, and builds that are deployed to docs.docker.com:
 
-    e. Install Jekyll and other required dependencies:
+- search auto-completion, and generation of `js/metadata.json`
+- google analytics
+- page ratings
+- `sitemap.xml` generation
+- minification of stylesheets (css/style.css)
+- adjusting "edit this page" links for content in other repositories
 
-       ```bash
-       bundle install
-       ```
+If you want to contribute in these areas, you can perform a "production" build
+locally.
 
-       >**Note**: You may need to install some packages manually.
+To preview the documentation with deployment features enabled, you need to set the
+`JEKYLL_ENV` environment variable when building the documentation;
 
-    f. Change the directory to `docker.github.io`.
+```bash
+JEKYLL_ENV=production docker-compose up --build
+```
 
-    g. Use the `jekyll serve` command to continuously build the HTML output.
+Once the container is built and running, visit [http://localhost:4000](http://localhost:4000)
+in your web browser to view the docs.
 
-    The `jekyll serve` process runs in the foreground, and starts a web server
-    running on http://localhost:4000/ by default. To stop it, use `CTRL+C`.
-    You can continue working in a second terminal and Jekyll will rebuild the
-    website incrementally. Refresh the browser to preview your changes.
+To rebuild the docs after you make changes, repeat the steps above.
 
-3. Build and run a Docker image for your working branch.
-
-   ```bash
-   $ docker build -t docker build -t docs/docker.github.io:<branch_name> .
-   $ docker run --rm -it -p 4000:4000 docs/docker.github.io:<branch_name>
-    ```
-
-   After the `docker run` command, copy the URL provided in the container build output in a browser,
-   http://0.0.0.0:4000, and verify your changes.
-
+<!--
+TODO re-enable auto-builds, or push master builds to Docker hub
 ## Read these docs offline
 
 To read the docs offline, you can use either a standalone container or a swarm service.
-To see all available tags, go to
-[Docker Hub](https://docs.docker.com/docker-hub/).
+To see all available tags, go to [Docker Hub](https://docs.docker.com/docker-hub/).
 
 The following examples use the `latest` tag:
 
@@ -225,11 +172,12 @@ The following examples use the `latest` tag:
   This example uses only a single replica, but you could run as many replicas as you'd like.
 
 Either way, you can now access the docs at port 4000 on your Docker host.
+-->
 
 ## Important files
 
 - `/_data/toc.yaml` defines the left-hand navigation for the docs
-- `/js/menu.js` defines most of the docs-specific JS such as TOC generation and menu syncing
+- `/js/docs.js` defines most of the docs-specific JS such as TOC generation and menu syncing
 - `/css/style.scss` defines the docs-specific style rules
 - `/_layouts/docs.html` is the HTML template file, which defines the header and footer, and includes all the JS/CSS that serves the docs content
 
@@ -260,9 +208,9 @@ following keys are supported. The title, description, and keywords are required.
 | notoc                  | no        | Either `true` or `false`. If `true`, no in-page TOC is generated for the HTML output of this page. Defaults to `false`. Appropriate for some landing pages that have no in-page headings.|
 | toc_min                | no        | Ignored if `notoc` is set to `true`. The minimum heading level included in the in-page TOC. Defaults to `2`, to show `<h2>` headings as the minimum. |
 | toc_max                | no        | Ignored if `notoc` is set to `false`. The maximum heading level included in the in-page TOC. Defaults to `3`, to show `<h3>` headings. Set to the same as `toc_min` to only show `toc_min` level of headings. |
-| tree                   | no        | Either `true` or `false`. Set to `false` to disable the left-hand site-wide navigation for this page. Appropriate for some pages like the search page or the 404 page. |
 | no_ratings             | no        | Either `true` or `false`. Set to `true` to disable the page-ratings applet for this page. Defaults to `false`. |
-| skip_read_time             | no        | Set to `true` to disable the 'Estimated reading time' banner for this page. |
+| skip_read_time         | no        | Set to `true` to disable the 'Estimated reading time' banner for this page. |
+| sitemap                | no        | Exclude the page from indexing by search engines. When set to `false`, the page is excluded from `sitemap.xml`, and a `<meta name="robots" content="noindex"/>` header is added to the page. |
 
 The following is an example of valid (but contrived) page metadata. The order of
 the metadata elements in the front-matter is not important.
@@ -291,7 +239,7 @@ advanced usage. For a basic horizontal tab set, copy/paste starting from this
 code and implement from there. Keep an eye on those `href="#id"` and `id="id"`
 references as you rename, add, and remove tabs.
 
-```
+```html
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" data-target="#tab1">TAB 1 HEADER</a></li>
   <li><a data-toggle="tab" data-target="#tab2">TAB 2 HEADER</a></li>
@@ -343,105 +291,6 @@ instance. Be sure to compress the images *before* adding them to the
 repository, doing it afterwards actually worsens the impact on the Git repo (but
 still optimizes the bandwidth during browsing).
 
-## Beta content disclaimer
-```bash
-> BETA DISCLAIMER
->
-> This is beta content. It is not yet complete and should be considered a work in progress. This content is subject to change without notice.
-```
-
-## Accessing unsupported archived documentation
-
-Supported documentation includes the current version plus the previous five versions.
-
-If you are using a version of the documentation that is no longer supported, which means that the version number is not listed in the site dropdown list, you can still access that documentation in the following ways:
-
-- By entering your version number and selecting it from the branch selection list for this repo
-- By directly accessing the Github URL for your version. For example, https://github.com/docker/docker.github.io/tree/v1.9 for `v1.9`
-- By running a container of the specific [tag for your documentation version](https://hub.docker.com/r/docs/docker.github.io/tags)
-in Docker Hub. For example, run the following to access `v1.9`:
-
- ```bash
-  docker run -it -p 4000:4000 docs/docker.github.io:v1.9
-  ```
-
-## Building archives and the live published docs
-
-All the images described below are automatically built using Docker Hub. To
-build the site manually, from scratch, including all utility and archive images,
-see the [README in the publish-tools branch](https://github.com/docker/docker.github.io/blob/publish-tools/README.md).
-
-- Some utility images are built from Dockerfiles in the `publish-tools` branch.
-  See its [README](https://github.com/docker/docker.github.io/blob/publish-tools/README.md)
-  for details.
-- Each archive branch automatically builds an image tagged
-  `docs/docker.github.io:v<VERSION>` when a change is merged into that branch.
-- The `master` branch has a Dockerfile which uses the static HTML from each
-  archive image, in combination with the Markdown
-  files in `master` and some upstream resources which are fetched at build-time,
-  to create the full site at [https://docs.docker.com/](/). All
-  of the long-running branches, such as `vnext-engine`, `vnext-compose`, etc,
-  use the same logic.
-
-## Creating a new archive
-
-When a new Docker Engine - Community Stable version is released, the previous state of `master`
-is archived into a version-specific branch like `v17.09`, by doing the following:
-
-1.  Create branch based off the commit hash before the new version was released.
-
-    ```bash
-    $ git checkout <HASH>
-    $ git checkout -b v17.09
-    ```
-
-2.  Run the `_scripts/fetch-upstream-resources.sh` script. This puts static
-    copies of the files in place that the `master` build typically fetches
-    each build.
-
-    ```bash
-    $ _scripts/fetch-upstream/resources.sh
-    ```
-
-3.  Overwrite the `Dockerfile` with the `Dockerfile.archive` (use `cp` rather
-    than `mv` so you don't inadvertently remove either file). Edit the resulting
-    `Dockerfile` and set the `VER` build argument to the appropriate value, like
-    `v17.09`.
-
-    ```bash
-    $ mv Dockerfile.archive Dockerfile
-    $ vi Dockerfile
-
-      < edit the variable and save >
-    ```
-
-4.  Do `git status` and add all changes, being careful not to add anything extra
-    by accident. Commit your work.
-
-    ```bash
-    $ git status
-    $ git add <filename>
-    $ git add <filename> (etc etc etc)
-    $ git commit -m "Creating archive for 17.09 docs"
-    ```
-
-5.  Make sure the archive builds.
-
-    ```bash
-    $ docker build -t docker build -t docs/docker.github.io:v17.09 .
-    $ docker run --rm -it -p 4000:4000 docs/docker.github.io:v17.09
-    ```
-
-    After the `docker run` command, browse to `http://localhost:4000/` and
-    verify that the archive is self-browseable.
-
-6.  Push the branch to the upstream repository. Do not create a pull request
-    as there is no reference branch to compare against.
-
-    ```bash
-    $ git push upstream v17.09
-    ```
-
 ## Copyright and license
 
-Code and documentation copyright 2017 Docker, inc, released under the Apache 2.0 license.
+Copyright 2013-2020 Docker, inc, released under the Apache 2.0 license.

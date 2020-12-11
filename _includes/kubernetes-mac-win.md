@@ -114,8 +114,10 @@ when deploying to override the default orchestrator for that deployment.
 docker stack deploy --orchestrator swarm --compose-file /path/to/docker-compose.yml mystack
 ```
 
-> **Note**: Deploying the same app in Kubernetes and swarm mode may lead to
-> conflicts with ports and service names.
+> **Note**
+>
+> Deploying the same app in Kubernetes and swarm mode may lead to conflicts with
+> ports and service names.
 
 ## Use the kubectl command
 
@@ -139,7 +141,7 @@ Docker has created the following demo app that you can deploy to swarm mode or
 to Kubernetes using the `docker stack deploy` command.
 
 ```yaml
-version: '3.3'
+version: "{{ site.compose_file_v3 }}"
 
 services:
   web:

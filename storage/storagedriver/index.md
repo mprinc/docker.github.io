@@ -1,6 +1,6 @@
 ---
 description: Learn the technologies that support storage drivers.
-keywords: container, storage, driver, AUFS, btfs, devicemapper,zvfs
+keywords: container, storage, driver, AUFS, btrfs, devicemapper, overlayfs, vfs, zfs
 title: About storage drivers
 redirect_from:
 - /en/latest/terms/layer/
@@ -18,8 +18,8 @@ Storage drivers allow you to create data in the writable layer of your container
 The files won't be persisted after the container is deleted, and both read and
 write speeds are lower than native file system performance. 
 
- > **Note**: Operations that are known to be problematic include write-intensive database storage, 
-particularly when pre-existing data exists in the write-only layer. More details are provided in this document.
+ > **Note**: Operations that are known to be problematic include write-intensive database storage,
+particularly when pre-existing data exists in the read-only layer. More details are provided in this document.
 
 [Learn how to use volumes](../volumes.md) to persist data and improve performance.
 
@@ -48,7 +48,7 @@ writable layer on top of the underlying layers. This layer is often called the
 "container layer". All changes made to the running container, such as writing
 new files, modifying existing files, and deleting files, are written to this thin
 writable container layer. The diagram below shows a container based on the Ubuntu
-18.04 image.
+15.04 image.
 
 ![Layers of a container based on the Ubuntu image](images/container-layers.jpg)
 
@@ -66,7 +66,7 @@ deleted. The underlying image remains unchanged.
 Because each container has its own writable container layer, and all changes are
 stored in this container layer, multiple containers can share access to the same
 underlying image and yet have their own data state. The diagram below shows
-multiple containers sharing the same Ubuntu 18.04 image.
+multiple containers sharing the same Ubuntu 15.04 image.
 
 ![Containers sharing same image](images/sharing-layers.jpg)
 

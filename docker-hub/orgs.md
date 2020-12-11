@@ -1,7 +1,7 @@
 ---
 description: Docker Hub Teams & Organizations
 keywords: Docker, docker, registry, teams, organizations, plans, Dockerfile, Docker Hub, docs, documentation
-title: Teams & Organizations
+title: Teams and Organizations
 redirect_from:
 - /docker-cloud/orgs/
 ---
@@ -15,9 +15,13 @@ to shared image repositories.
 > **Note:** in Docker Hub, users cannot belong directly to an organization.
 They belong only to teams within an organization.
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G7lvSnAqed8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Working with organizations
 
 ### Create an organization
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/b0TKcIqa9Po" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 1. Start by clicking on **[Organizations](https://hub.docker.com/orgs)** in
 Docker Hub.
@@ -29,8 +33,6 @@ Docker Hub.
 You've created an organization. You'll see you have a team, the **owners** team
 with a single member (you!).
 
-In some situations, you can also create an organization by [converting a user account](convert-account.md).
-
 #### The owners team
 
 The **owners** team is a special team that has full access to all repositories
@@ -40,7 +42,6 @@ Members of this team can:
 - Manage organization settings and billing
 - Create a team and modify the membership of any team
 - Access and modify any repository belonging to the organization
-
 
 ### Access an organization
 
@@ -58,18 +59,17 @@ If you don't see the organization, then you are neither a member or an owner of 
 
 ## Working with teams and members
 
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MROKmtmWCVI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ### Create a team
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/78wbbBoasIc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 1. Go to **Organizations** in Docker Hub, and select your organization.
 
 2. Open the **Teams** tab and click **Create Team**.
 
-      ![Teams view](images/orgs-teams2019.png)
-
 3. Fill out your team's information and click **Create**.
-
-      ![Create a team](images/orgs-new-team2019.png)
-
 
 ### Add a member to a team
 
@@ -77,25 +77,21 @@ You can add a member to a team in one of two ways.
 
 If the user isn't in your organization:
 
-1. Go **Organizations** in Docker Hub, and select your organization.
+1. Go to **Organizations** in Docker Hub, and select your organization.
 
 2. Click **Add Member**.
 
-      ![Add member from members list](images/org-members2019.png)
+3. Enter the user's Docker ID or email, and select a team from the drop-down list.
 
-3. Provide the user's Docker ID username _or_ email, and select a team from the dropdown.
-
-      ![Add user to team from org page](images/orgs-add-member2019.png)
-
+4. Click **Add** to confirm.
 
 If the user already belongs to another team in the organization:
 
 1. Open the team's page in Docker Hub: **Organizations** > **_Your Organization_** > **Teams** > **_Your Team Name_**
 
-2. Click **Add User**.
-3. Provide the user's Docker ID username _or_ email to add them to the team.
+2. Click **Add user**.
 
-      ![Add user to team from team page](images/teams-add-member2019.png)
+3. Enter the user's Docker ID or email to add them to the team.
 
       > **Note**: You are not automatically added to teams created by your organization.
 
@@ -103,27 +99,22 @@ If the user already belongs to another team in the organization:
 
 To remove a member from all teams in an organization:
 
-1. Go **Organizations** in Docker Hub, and select your organization.
+1. Go to **Organizations** in Docker Hub, and select your organization. The Organizations page lists all team members.
 
-2. Click the **x** next to a member's name:
+2. Click the **x** next to a member’s name to remove them from all the teams in the organization.
 
-      ![Add User to Team](images/org-members2019.png)
-
+3. When prompted, click **Remove** to confirm the removal.
 
 To remove a member from a specific team:
 
-1. Open the team this user is on. You can do this in one of two ways:
+1. Go to **Organizations** in Docker Hub, and select your organization.
 
-      * If you know the team name, go to **Organizations** > **_Your Organization_** > **Teams** > **_Team Name_**.
+2. Click on the **Teams** tab and select the team from the list.
 
-          > **Note:** You can filter the **Teams** tab by username, but you have to use the format _@username_ in the search field (partial names will not work).
+3. Click the **x** next to the user's name to remove them from the team.
 
-      * If you don't know the team name, go to **Organizations** > **_Your Organization_** and search for the user. Hover over **View** to see all of their teams, then click on **View** > **_Team Name_**.
-
-2. Find the user in the list, and click the **x** next to the user's name to remove them.
-
-      ![List of members on a team](images/orgs-team-members2019.png)
-
+4. When prompted, click **Remove** to confirm the removal.
+to confirm the removal.
 
 ### Give a team access to a repository
 

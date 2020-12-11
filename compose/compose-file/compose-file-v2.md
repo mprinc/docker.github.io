@@ -1,8 +1,6 @@
 ---
 description: Compose file reference
 keywords: fig, composition, compose version 3, docker
-redirect_from:
-- /compose/yml
 title: Compose file version 2 reference
 toc_max: 4
 toc_min: 1
@@ -22,7 +20,7 @@ how to upgrade, see **[About versions and upgrading](compose-versioning.md)**.
 
 ## Service configuration reference
 
-The Compose file is a [YAML](http://yaml.org/) file defining
+The Compose file is a [YAML](https://yaml.org) file defining
 [services](#service-configuration-reference),
 [networks](#network-configuration-reference) and
 [volumes](#volume-configuration-reference).
@@ -514,7 +512,7 @@ services:
   redis:
     image: redis
   db:
-    image: redis
+    image: postgres
     healthcheck:
       test: "exit 0"
 ```
@@ -714,7 +712,7 @@ extends:
   service: webapp
 ```
 
-The `service` the name of the service being extended, for example
+The `service` is the name of the service being extended, for example
 `web` or `database`. The `file` is the location of a Compose configuration
 file defining that service.
 
@@ -1994,5 +1992,5 @@ networks:
 - [User guide](../index.md)
 - [Installing Compose](../install.md)
 - [Compose file versions and upgrading](compose-versioning.md)
-- [Samples](../../samples/index.md)
+- [Sample apps with Compose](../samples-for-compose.md)
 - [Command line reference](../reference/index.md)

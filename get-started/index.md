@@ -3,61 +3,66 @@ title: "Orientation and setup"
 keywords: get started, setup, orientation, quickstart, intro, concepts, containers, docker desktop
 description: Get oriented on some basics of Docker and install Docker Desktop.
 redirect_from:
-- /getstarted/
+- /engine/getstarted-voting-app/
+- /engine/getstarted-voting-app/cleanup/
+- /engine/getstarted-voting-app/create-swarm/
+- /engine/getstarted-voting-app/customize-app/
+- /engine/getstarted-voting-app/deploy-app/
+- /engine/getstarted-voting-app/node-setup/
+- /engine/getstarted-voting-app/test-drive/
+- /engine/getstarted/
+- /engine/getstarted/last_page/
+- /engine/getstarted/step_five/
+- /engine/getstarted/step_four/
+- /engine/getstarted/step_one/
+- /engine/getstarted/step_six/
+- /engine/getstarted/step_three/
+- /engine/getstarted/step_two/
+- /engine/tutorials/dockerimages/
+- /engine/tutorials/dockerizing/
+- /engine/tutorials/usingdocker/
+- /engine/userguide/containers/dockerimages/
+- /engine/userguide/dockerimages/
+- /engine/userguide/intro/
 - /get-started/part1/
 - /get-started/part6/
-- /engine/getstarted/
-- /learn/
-- /engine/getstarted/step_one/
-- /engine/getstarted/step_two/
-- /engine/getstarted/step_three/
-- /engine/getstarted/step_four/
-- /engine/getstarted/step_five/
-- /engine/getstarted/step_six/
-- /engine/getstarted/last_page/
-- /engine/getstarted-voting-app/
-- /engine/getstarted-voting-app/node-setup/
-- /engine/getstarted-voting-app/create-swarm/
-- /engine/getstarted-voting-app/deploy-app/
-- /engine/getstarted-voting-app/test-drive/
-- /engine/getstarted-voting-app/customize-app/
-- /engine/getstarted-voting-app/cleanup/
-- /engine/userguide/intro/
-- /mac/started/
-- /windows/started/
-- /linux/started/
+- /getstarted/
 - /getting-started/
-- /mac/step_one/
-- /windows/step_one/
-- /linux/step_one/
-- /engine/tutorials/dockerizing/
-- /mac/step_two/
-- /windows/step_two/
-- /linux/step_two/
-- /mac/step_three/
-- /windows/step_three/
-- /linux/step_three/
-- /engine/tutorials/usingdocker/
-- /mac/step_four/
-- /windows/step_four/
-- /linux/step_four/
-- /engine/tutorials/dockerimages/
-- /userguide/dockerimages/
-- /engine/userguide/dockerimages/
-- /mac/last_page/
-- /windows/last_page/
+- /learn/
 - /linux/last_page/
-- /mac/step_six/
-- /windows/step_six/
+- /linux/started/
+- /linux/step_four/
+- /linux/step_one/
 - /linux/step_six/
-- /engine/tutorials/dockerrepos/
+- /linux/step_three/
+- /linux/step_two/
+- /mac/last_page/
+- /mac/started/
+- /mac/step_four/
+- /mac/step_one/
+- /mac/step_six/
+- /mac/step_three/
+- /mac/step_two/
+- /userguide/dockerimages/
 - /userguide/dockerrepos/
-- /engine/userguide/containers/dockerimages/
+- /windows/last_page/
+- /windows/started/
+- /windows/step_four/
+- /windows/step_one/
+- /windows/step_six/
+- /windows/step_three/
+- /windows/step_two/
 ---
 
 {% include_relative nav.html selected="1" %}
 
-Welcome! We are excited that you want to learn Docker. The Docker Quickstart training module teaches you how to:
+Welcome! We are excited that you want to learn Docker.
+
+This page contains step-by-step instructions on how to get started with Docker. We also recommend the video walkthrough from Dockercon 2020.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/iqqDU2crIEQ?start=30" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+The Docker Quickstart training module teaches you how to:
 
 1.  Set up your Docker environment (on this page)
 
@@ -109,10 +114,9 @@ VMs incur a lot of overhead beyond what is being consumed by your application lo
 
 Docker Desktop is an easy-to-install application for your Mac or Windows environment that enables you to start coding and containerizing in minutes. Docker Desktop includes everything you need to build, run, and share containerized applications right from your machine.
 
-Follow the instructions appropriate for your operating system to download and install Docker Desktop:
+Follow the instructions appropriate for your operating system to download and install Docker Desktop.
 
- - [Docker Desktop for Mac](/docker-for-mac/install/){: target="_blank" class="_"}
- - [Docker Desktop for Windows](/docker-for-windows/install/){: target="_blank" class="_"}
+ [Docker Desktop for Mac](/docker-for-mac/install/){: target="_blank" rel="noopener" class="_"}{: .button .outline-btn} [Docker Desktop for Windows](/docker-for-windows/install/){: target="_blank" rel="noopener" class="_"}{: .button .outline-btn}
 
 ### Test Docker version
 
@@ -120,12 +124,12 @@ After you've successfully installed Docker Desktop, open a terminal and run `doc
 
 ```shell
 $ docker --version
-Docker version 19.03.5, build 633a0ea
+Docker version 19.03.13, build 4484c46d9d
 ```
 
 ### Test Docker installation
 
-1.  Test that your installation works by running the [hello-world](https://hub.docker.com/_/hello-world/){: target="_blank" class="_"} Docker image:
+1.  Test that your installation works by running the [hello-world](https://hub.docker.com/_/hello-world/){: target="_blank" rel="noopener" class="_"} Docker image:
 
     ```shell
         $ docker run hello-world
@@ -157,6 +161,8 @@ Docker version 19.03.5, build 633a0ea
 At this point, you've installed Docker Desktop on your development machine, and ran a quick test to ensure you are set up to build and run your first containerized application.
 
 [On to Part 2 >>](part2.md){: class="button outline-btn" style="margin-bottom: 30px; margin-right: 100%"}
+
+For information on how to build and run your first containerized application using Node.js, go to [Build your Node.js image](/nodejs/build-images.md).
 
 ## CLI references
 

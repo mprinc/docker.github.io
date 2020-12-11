@@ -19,11 +19,12 @@ point of view of the container.
 
 ## Published ports
 
-By default, when you create a container, it does not publish any of its ports
-to the outside world. To make a port available to services outside of Docker, or
-to Docker containers which are not connected to the container's network, use the
-`--publish` or `-p` flag. This creates a firewall rule which maps a container
-port to a port on the Docker host. Here are some examples.
+By default, when you create or run a container using `docker create` or `docker run`,
+it does not publish any of its ports to the outside world. To make a port available
+to services outside of Docker, or to Docker containers which are not connected to
+the container's network, use the `--publish` or `-p` flag. This creates a firewall
+rule which maps a container port to a port on the Docker host to the outside world.
+Here are some examples.
 
 | Flag value                      | Description                                                                                                                                     |
 |---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -56,9 +57,17 @@ flag to specify an additional network alias for the container on that network.
 
 ## DNS services
 
-By default, a container inherits the DNS settings of the Docker daemon,
-including the `/etc/hosts` and `/etc/resolv.conf`.You can override these
-settings on a per-container basis.
+By default, a container inherits the DNS settings of the host, as defined in the
+`/etc/resolv.conf` configuration file. Containers that use the default `bridge`
+network get a copy of this file, whereas containers that use a
+[custom network](../../network/network-tutorial-standalone.md#use-user-defined-bridge-networks)
+use Docker's embedded DNS server, which forwards external DNS lookups to the DNS
+servers configured on the host.
+
+Custom hosts defined in `/etc/hosts` are not inherited. To pass additional hosts
+into your container, refer to [add entries to container hosts file](../../engine/reference/commandline/run.md#add-entries-to-container-hosts-file---add-host)
+in the `docker run` reference documentation. You can override these settings on
+a per-container basis.
 
 | Flag           | Description                                                                                                                                                                                                                                                         |
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

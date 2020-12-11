@@ -3,7 +3,9 @@ description: Introduction and Overview of Compose
 keywords: documentation, docs, docker, compose, orchestration, containers
 title: Overview of Docker Compose
 redirect_from:
+ - /compose/networking/swarm/
  - /compose/overview/
+ - /compose/swarm/
 ---
 
 >**Looking for Compose file reference?** [Find the latest version here](compose-file/index.md).
@@ -30,21 +32,23 @@ so they can be run together in an isolated environment.
 
 A `docker-compose.yml` looks like this:
 
-    version: '2.0'
-    services:
-      web:
-        build: .
-        ports:
-        - "5000:5000"
-        volumes:
-        - .:/code
-        - logvolume01:/var/log
-        links:
-        - redis
-      redis:
-        image: redis
+```yaml
+version: "{{ site.compose_file_v3 }}"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
     volumes:
-      logvolume01: {}
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+```
 
 For more information about the Compose file, see the
 [Compose file reference](compose-file/index.md).
@@ -150,16 +154,16 @@ is the automated test suite. Automated end-to-end testing requires an
 environment in which to run tests. Compose provides a convenient way to create
 and destroy isolated testing environments for your test suite. By defining the full environment in a [Compose file](compose-file/index.md), you can create and destroy these environments in just a few commands:
 
-    $ docker-compose up -d
-    $ ./run_tests
-    $ docker-compose down
+```bash
+$ docker-compose up -d
+$ ./run_tests
+$ docker-compose down
+```
 
 ### Single host deployments
 
 Compose has traditionally been focused on development and testing workflows,
-but with each release we're making progress on more production-oriented features. You can use Compose to deploy to a remote Docker Engine. The Docker Engine may be a single instance provisioned with
-[Docker Machine](../machine/overview.md) or an entire
-[Docker Swarm](../engine/swarm/index.md) cluster.
+but with each release we're making progress on more production-oriented features.
 
 For details on using production-oriented features, see
 [compose in production](production.md) in this documentation.

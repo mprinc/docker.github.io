@@ -7,7 +7,7 @@ title: Isolate containers with a user namespace
 Linux namespaces provide isolation for running processes, limiting their access
 to system resources without the running process being aware of the limitations.
 For more information on Linux namespaces, see
-[Linux namespaces](https://www.linux.com/news/understanding-and-securing-linux-namespaces){: target="_blank" class="_" }.
+[Linux namespaces](https://www.linux.com/news/understanding-and-securing-linux-namespaces){: target="_blank" rel="noopener" class="_" }.
 
 The best way to prevent privilege-escalation attacks from within a container is
 to configure your container's applications to run as unprivileged users. For
@@ -245,7 +245,7 @@ for some of these limitations.
 To disable user namespaces for a specific container, add the `--userns=host`
 flag to the `docker container create`, `docker container run`, or `docker container exec` command.
 
-There is a side effect when using this flag: user remapping will not be enabled for that container but, because the read-only (image) layers are shared between containers, ownership of the the containers filesystem will still be remapped.
+There is a side effect when using this flag: user remapping will not be enabled for that container but, because the read-only (image) layers are shared between containers, ownership of the containers filesystem will still be remapped.
 
 What this means is that the whole container filesystem will belong to the user specified in the `--userns-remap` daemon config (`231072` in the example above). This can lead to unexpected behavior of programs inside the container. For instance `sudo` (which checks that its binaries belong to user `0`) or binaries with a `setuid` flag.
 

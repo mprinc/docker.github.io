@@ -45,9 +45,9 @@ add an explicit signal handler for `SIGTERM`.
         stop_signal: SIGINT
 
 * If you can't modify the application, wrap the application in a lightweight init
-system (like [s6](http://skarnet.org/software/s6/)) or a signal proxy (like
+system (like [s6](https://skarnet.org/software/s6/)) or a signal proxy (like
 [dumb-init](https://github.com/Yelp/dumb-init) or
-[tini](https://github.com/krallin/tini)).  Either of these wrappers take care of
+[tini](https://github.com/krallin/tini)).  Either of these wrappers takes care of
 handling `SIGTERM` properly.
 
 ## How do I run multiple copies of a Compose file on the same host?
@@ -79,7 +79,7 @@ containers.
 
 ## Can I use json instead of yaml for my Compose file?
 
-Yes. [Yaml is a superset of json](http://stackoverflow.com/a/1729545/444646) so
+Yes. [Yaml is a superset of json](https://stackoverflow.com/a/1729545/444646) so
 any JSON file should be valid Yaml.  To use a JSON file with Compose,
 specify the filename to use, for example:
 
@@ -111,9 +111,9 @@ github](https://github.com/search?q=in%3Apath+docker-compose.yml+extension%3Ayml
 
 ## Compose documentation
 
+- [User guide](index.md)
 - [Installing Compose](install.md)
-- [Get started with Django](django.md)
-- [Get started with Rails](rails.md)
-- [Get started with WordPress](wordpress.md)
+- [Getting Started](gettingstarted.md)
 - [Command line reference](reference/index.md)
 - [Compose file reference](compose-file/index.md)
+- [Sample apps with Compose](samples-for-compose.md)

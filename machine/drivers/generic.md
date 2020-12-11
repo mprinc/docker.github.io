@@ -2,7 +2,6 @@
 description: Generic driver for machine
 keywords: machine, Generic, driver
 title: Generic
-hide_from_sitemap: true
 ---
 
 Create machines using an existing VM/Host with SSH.
@@ -69,6 +68,6 @@ docker-machine.  Make sure you don't have any other configuration files in this 
 that override the [ExecStart] setting.
 
 Once you have confirmed any conflicting settings have been removed, run
-`sudo systemctl daemon reload` followed by `sudo systemctl restart docker`
+`sudo systemctl daemon-reload` followed by `sudo systemctl restart docker`
 
 

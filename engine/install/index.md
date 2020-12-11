@@ -14,7 +14,6 @@ redirect_from:
 - /engine/installation/linux/docker-ee/
 - /engine/installation/
 - /en/latest/installation/
-toc_max: 2
 ---
 
 
@@ -25,29 +24,29 @@ Docker Engine is available on a variety of [Linux platforms](#server),
 through Docker Desktop, and as a [static binary installation](binaries.md). Find
 your preferred operating system below.
 
-#### Desktop
+### Desktop
 
-{% assign yes = '![yes](/images/green-check.svg){: style="height: 14px; margin: 0 auto"}' %}
+{% assign yes = '![yes](/images/green-check.svg){: .inline style="height: 14px; margin: 0 auto"}' %}
 
 | Platform                                                          | x86_64 / amd64                                   |
 |:------------------------------------------------------------------|:------------------------------------------------:|
 | [Docker Desktop for Mac (macOS)](../../docker-for-mac/install.md) | [{{ yes }}](../../docker-for-mac/install.md)     |
 | [Docker Desktop for Windows](../../docker-for-windows/install.md) | [{{ yes }}](../../docker-for-windows/install.md) |
 
-#### Server
+### Server
 
 Docker provides `.deb` and `.rpm` packages from the following Linux distributions
 and architectures:
 
-| Platform              | x86_64 / amd64         | ARM                      | ARM64 / AARCH64        | IBM Power (ppc64le)    | IBM Z (s390x)          |
-|:----------------------|:-----------------------|:-------------------------|:-----------------------|:-----------------------|:-----------------------|
-| [CentOS](centos.md)   | [{{ yes }}](centos.md) |                          | [{{ yes }}](centos.md) |                        |                        |
-| [Debian](debian.md)   | [{{ yes }}](debian.md) | [{{ yes }}](debian.md)   | [{{ yes }}](debian.md) |                        |                        |
-| [Fedora](fedora.md)   | [{{ yes }}](fedora.md) |                          | [{{ yes }}](fedora.md) |                        |                        |
-| [Raspbian](debian.md) |                        | [{{ yes }}](debian.md)   | [{{ yes }}](debian.md) |                        |                        |
-| [Ubuntu](ubuntu.md)   | [{{ yes }}](ubuntu.md) | [{{ yes }}](ubuntu.md)   | [{{ yes }}](ubuntu.md) | [{{ yes }}](ubuntu.md) | [{{ yes }}](ubuntu.md) |
+| Platform              | x86_64 / amd64         | ARM                      | ARM64 / AARCH64        |
+|:----------------------|:-----------------------|:-------------------------|:-----------------------|
+| [CentOS](centos.md)   | [{{ yes }}](centos.md) |                          | [{{ yes }}](centos.md) |
+| [Debian](debian.md)   | [{{ yes }}](debian.md) | [{{ yes }}](debian.md)   | [{{ yes }}](debian.md) |
+| [Fedora](fedora.md)   | [{{ yes }}](fedora.md) |                          | [{{ yes }}](fedora.md) |
+| [Raspbian](debian.md) |                        | [{{ yes }}](debian.md)   | [{{ yes }}](debian.md) |
+| [Ubuntu](ubuntu.md)   | [{{ yes }}](ubuntu.md) | [{{ yes }}](ubuntu.md)   | [{{ yes }}](ubuntu.md) |
 
-##### Other Linux distributions
+### Other Linux distributions
 
 > **Note**
 >
@@ -89,10 +88,10 @@ and **nightly**:
 
 <span class='definition'>Year-month releases</span> are made from a release branch diverged from the master
 branch. <span class='important'>The branch is created with format `<year>.<month>`</span>, for example
-`18.09`. The year-month name indicates the earliest possible calendar
+`19.03`. The year-month name indicates the earliest possible calendar
 month to expect the release to be generally available. All further patch
-releases are performed from that branch. For example, once `v18.09.0` is
-released, all subsequent patch releases are built from the `18.09` branch.
+releases are performed from that branch. For example, once `v19.03.0` is
+released, all subsequent patch releases are built from the `19.03` branch.
 
 ### Test
 
@@ -114,15 +113,13 @@ format:
 where the time is the commit time in UTC and the final suffix is the prefix
 of the commit hash, for example `0.0.0-20180720214833-f61e0f7`.
 
-These builds allow for testing from the latest code on the master branch.
-
-> **Note:**
-> No qualifications or guarantees are made for the nightly builds.
+These builds allow for testing from the latest code on the master branch. No
+qualifications or guarantees are made for the nightly builds.
 
 ## Support
 
 Docker Engine releases of a year-month branch are supported with patches as
-needed for one month after the the next year-month general availability release.
+needed for one month after the next year-month general availability release.
 
 This means bug reports and backports to release branches are assessed
 until the end-of-life date.

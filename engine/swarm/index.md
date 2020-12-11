@@ -2,6 +2,47 @@
 description: Docker Engine swarm mode overview
 keywords: docker, container, cluster, swarm
 title: Swarm mode overview
+redirect_from:
+- /api/swarm-api/
+- /engine/userguide/networking/overlay-standalone-swarm/
+- /network/overlay-standalone.swarm/
+- /release-notes/docker-swarm/
+- /swarm/
+- /swarm/api/
+- /swarm/configure-tls/
+- /swarm/discovery/
+- /swarm/get-swarm/
+- /swarm/install-manual/
+- /swarm/install-w-machine/
+- /swarm/multi-host-networking/
+- /swarm/multi-manager-setup/
+- /swarm/networking/
+- /swarm/overview/
+- /swarm/plan-for-production/
+- /swarm/provision-with-machine/
+- /swarm/reference/
+- /swarm/reference/create/
+- /swarm/reference/help/
+- /swarm/reference/join/
+- /swarm/reference/list/
+- /swarm/reference/manage/
+- /swarm/reference/swarm/
+- /swarm/release-notes/
+- /swarm/scheduler/
+- /swarm/scheduler/filter/
+- /swarm/scheduler/rescheduling/
+- /swarm/scheduler/strategy/
+- /swarm/secure-swarm-tls/
+- /swarm/status-code-comparison-to-docker/
+- /swarm/swarm-api/
+- /swarm/swarm_at_scale/
+- /swarm/swarm_at_scale/02-deploy-infra/
+- /swarm/swarm_at_scale/03-create-cluster/
+- /swarm/swarm_at_scale/04-deploy-app/
+- /swarm/swarm_at_scale/about/
+- /swarm/swarm_at_scale/deploy-app/
+- /swarm/swarm_at_scale/deploy-infra/
+- /swarm/swarm_at_scale/troubleshoot/
 ---
 
 To use Docker in swarm mode, install Docker. See

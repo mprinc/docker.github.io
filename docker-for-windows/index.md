@@ -2,172 +2,25 @@
 description: Getting Started
 keywords: windows, edge, tutorial, run, docker, local, machine
 redirect_from:
-- /winkit/getting-started/
-- /winkit/
+- /docker-for-windows/index/
+- /docker-for-windows/started/
+- /engine/installation/windows/
+- /installation/windows/
 - /windows/
 - /windows/started/
-- /docker-for-windows/started/
-- /installation/windows/
-- /engine/installation/windows/
-- /docker-for-windows/index/
-title: Get started with Docker for Windows
+- /winkit/
+- /winkit/getting-started/
+
+title: Docker Desktop for Windows user manual
 toc_min: 1
 toc_max: 2
 ---
 
-Welcome to Docker Desktop!
+Welcome to Docker Desktop! The Docker Desktop for Windows user manual provides information on how to configure and manage your Docker Desktop settings.
 
-The _Docker Desktop for Windows_ section contains information about the Docker Desktop Community Stable release. For information about features available in Edge releases, see the [Edge release notes](edge-release-notes/). For information about Docker Desktop Enterprise (DDE) releases, see [Docker Desktop Enterprise](/desktop/enterprise/).
+For information about Docker Desktop download, system requirements, and installation instructions, see [Install Docker Desktop](install.md).
 
-Docker is a full development platform to build, run, and share containerized applications. Docker Desktop is the best way to get started with Docker _on Windows_.
-
-See [Install Docker Desktop](install.md){: target="_blank" class="_"} for download information, system requirements, and installation instructions.
-
-## Test your installation
-
-1.  Open a terminal window (Command Prompt or PowerShell, _but not_ PowerShell ISE).
-
-2.  Run `docker --version` to ensure that you have a supported version of Docker:
-
-    ```shell
-    > docker --version
-
-    Docker version 19.03.1
-    ```
-
-3.  Pull the [hello-world image](https://hub.docker.com/r/library/hello-world/) from Docker Hub and run a container:
-
-    ```shell
-    > docker run hello-world
-
-    docker : Unable to find image 'hello-world:latest' locally
-    latest: Pulling from library/hello-world
-    1b930d010525: Pull complete
-    Digest: sha256:c3b4ada4687bbaa170745b3e4dd8ac3f194ca95b2d0518b417fb47e5879d9b5f
-    Status: Downloaded newer image for hello-world:latest
-
-    Hello from Docker!
-    This message shows that your installation appears to be working correctly.
-    ...
-
-    ```
-
-4.  List the `hello-world` _image_ that was downloaded from Docker Hub:
-
-    ```shell
-    > docker image ls
-    ```
-
-5.  List the `hello-world` _container_ (that exited after displaying "Hello from Docker!"):
-
-    ```shell
-    > docker container ls --all
-    ```
-
-6.  Explore the Docker help pages by running some help commands:
-
-    ```shell
-    > docker --help
-    > docker container --help
-    > docker container ls --help
-    > docker run --help
-    ```
-
-## Explore the application
-
-In this section, we demonstrate the ease and power of Dockerized applications by
-running something more complex, such as an OS and a webserver.
-
-1. Pull an image of the [Ubuntu OS](https://hub.docker.com/r/_/ubuntu/) and run an interactive terminal inside the spawned container:
-
-    ```shell
-    > docker run --interactive --tty ubuntu bash
-
-    docker : Unable to find image 'ubuntu:latest' locally
-    latest: Pulling from library/ubuntu
-    22e816666fd6: Pull complete
-    079b6d2a1e53: Pull complete
-    11048ebae908: Pull complete
-    c58094023a2e: Pull complete
-    Digest: sha256:a7b8b7b33e44b123d7f997bd4d3d0a59fafc63e203d17efedf09ff3f6f516152
-    Status: Downloaded newer image for ubuntu:latest
-    ```
-
-    > Do not use PowerShell ISE
-    >
-    > Interactive terminals do not work in PowerShell ISE (but they do in PowerShell). See [docker/for-win/issues/223](https://github.com/docker/for-win/issues/223).
-
-2. You are in the container. At the root `#` prompt, check the `hostname` of the container:
-
-    ```shell
-    root@8aea0acb7423:/# hostname
-    8aea0acb7423
-    ```
-
-    Notice that the hostname is assigned as the container ID (and is also used in the prompt).
-
-3. Exit the shell with the `exit` command (which also stops the container):
-
-    ```shell
-    root@8aea0acb7423:/# exit
-    >
-    ```
-
-4. List containers with the `--all` option (because no containers are running).
-
-    The `hello-world` container (randomly named, `relaxed_sammet`) stopped after displaying its message. The `ubuntu` container (randomly named, `laughing_kowalevski`) stopped when you exited the container.
-
-    ```shell
-    > docker container ls --all
-
-    CONTAINER ID    IMAGE          COMMAND     CREATED          STATUS                      PORTS    NAMES
-    8aea0acb7423    ubuntu         "bash"      2 minutes ago    Exited (0) 2 minutes ago             laughing_kowalevski
-    45f77eb48e78    hello-world    "/hello"    3 minutes ago    Exited (0) 3 minutes ago             relaxed_sammet
-    ```
-
-5. Pull and run a Dockerized [nginx](https://hub.docker.com/_/nginx/) web server that we name, `webserver`:
-
-    ```shell
-    > docker run --detach --publish 80:80 --name webserver nginx
-
-    Unable to find image 'nginx:latest' locally
-    latest: Pulling from library/nginx
-
-    fdd5d7827f33: Pull complete
-    a3ed95caeb02: Pull complete
-    716f7a5f3082: Pull complete
-    7b10f03a0309: Pull complete
-    Digest: sha256:f6a001272d5d324c4c9f3f183e1b69e9e0ff12debeb7a092730d638c33e0de3e
-    Status: Downloaded newer image for nginx:latest
-    dfe13c68b3b86f01951af617df02be4897184cbf7a8b4d5caf1c3c5bd3fc267f
-    ```
-
-6. Point your web browser at `http://localhost` to display the nginx start page. (You don't need to append `:80` because you specified the default HTTP port in the `docker` command.)
-
-    ![Run nginx edge](images/nginx-homepage.png)
-
-7. List only your _running_ containers:
-
-    ```shell
-    > docker container ls
-
-    CONTAINER ID    IMAGE    COMMAND                   CREATED          STATUS          PORTS                 NAMES
-    0e788d8e4dfd    nginx    "nginx -g 'daemon of…"    2 minutes ago    Up 2 minutes    0.0.0.0:80->80/tcp    webserver
-    ```
-
-8. Stop the running nginx container by the name we assigned it, `webserver`:
-
-    ```shell
-    >  docker container stop webserver
-    ```
-
-9. Remove all three containers by their names -- the latter two names will differ for you:
-
-    ```shell
-    > docker container rm webserver laughing_kowalevski relaxed_sammet
-    ```
-
-## Docker Settings dialog
+## Settings
 
 The **Docker Desktop** menu allows you to configure your Docker settings such as installation, updates, version channels, Docker Hub login,
 and more.
@@ -190,11 +43,6 @@ On the **General** tab of the Settings dialog, you can configure when to start a
 
 * **Start Docker when you log in** - Automatically start Docker Desktop upon Windows system login.
 
-* **Automatically check for updates** - By default, Docker Desktop automatically checks for updates and notifies you when an update is available.
-Click **OK** to accept and install updates (or cancel to keep the current
-version). You can manually update by choosing **Check for Updates** from the
-main Docker menu.
-
 * **Expose daemon on tcp://localhost:2375 without TLS** - Click this option to enable legacy clients to connect to the Docker daemon. You must use this option with caution as exposing the daemon without TLS can result in remote code execution attacks.
 
 * **Send usage statistics** - By default, Docker Desktop sends diagnostics,
@@ -203,11 +51,21 @@ troubleshoot the application. Clear the check box to opt out. Docker may periodi
 
 ### Resources
 
-The **Resources** tab allows you to configure CPU, memory, disk, proxies, network, and other resources.
+The **Resources** tab allows you to configure CPU, memory, disk, proxies, 
+network, and other resources. Different settings are available for 
+configuration depending on whether you are using Linux containers in WSL 2 
+mode, Linux containers in Hyper-V mode, or Windows containers.
 
 ![Resources](images/settings-resources.png){:width="750px"}
 
 #### Advanced
+
+> **Note**
+>
+> The Advanced tab is only available in Hyper-V mode, because in WSL 2 mode and 
+> Windows container mode these resources are managed by Windows. In WSL 2 
+> mode, you can configure limits on the memory, CPU, and swap size allocated
+> to the [WSL 2 utility VM](https://docs.microsoft.com/en-us/windows/wsl/release-notes#build-18945).
 
 Use the **Advanced** tab to limit resources available to Docker.
 
@@ -228,17 +86,27 @@ You can also move the disk image to a different location. If you attempt to move
 
 #### File sharing
 
-Use File sharing to allow local drives on Windows to be shared with Linux containers.
+> **Note**
+>
+> The File sharing tab is only available in Hyper-V mode, because in WSL 2 mode 
+> and Windows container mode all files are automatically shared by Windows.
+
+Use File sharing to allow local directories on Windows to be shared with Linux containers.
 This is especially useful for
 editing source code in an IDE on the host while running and testing the code in a container.
 Note that configuring file sharing is not necessary for Windows containers, only [Linux containers](#switch-between-windows-and-linux-containers).
- If a drive is not shared with a Linux container you may get `file not found` or `cannot start service` errors at runtime. See [Volume mounting requires shared drives for Linux containers](troubleshoot.md#volume-mounting-requires-shared-drives-for-linux-containers).
+ If a directory is not shared with a Linux container you may get `file not found` or `cannot start service` errors at runtime. See [Volume mounting requires shared folders for Linux containers](troubleshoot.md#volume-mounting-requires-shared-folders-for-linux-containers).
 
-**Apply & Restart** makes the drives available to containers using Docker's bind mount (`-v`) feature.
+File share settings are:
 
-> Tips on shared drives, permissions, and volume mounts
+- **Add a Directory**: Click `+` and navigate to the directory you want to add.
+
+- **Apply & Restart** makes the directory available to containers using Docker's
+  bind mount (`-v`) feature.
+
+> Tips on shared folders, permissions, and volume mounts
 >
- * Shared drives are designed to allow application code to be edited on the host while being executed in containers. For non-code items
+ * Shared folders are designed to allow application code to be edited on the host while being executed in containers. For non-code items
  such as cache directories or databases, the performance will be much better if they are stored in
  the Linux VM, using a [data volume](../storage/volumes.md)
  (named volume) or [data container](../storage/volumes.md).
@@ -248,60 +116,78 @@ Note that configuring file sharing is not necessary for Windows containers, only
 >
  * Windows presents a case-insensitive view of the filesystem to applications while Linux is case-sensitive. On Linux it is possible to create 2 separate files: `test` and `Test`, while on Windows these filenames would actually refer to the same underlying file. This can lead to problems where an app works correctly on a developer Windows machine (where the file contents are shared) but fails when run in Linux in production (where the file contents are distinct). To avoid this, Docker Desktop insists that all shared files are accessed as their original case. Therefore if a file is created called `test`, it must be opened as `test`. Attempts to open `Test` will fail with "No such file or directory". Similarly once a file called `test` is created, attempts to create a second file called `Test` will fail.
 
-#### Shared drives on demand
+#### Shared folders on demand
 
-You can share a drive "on demand" the first time a particular mount is requested.
+You can share a folder "on demand" the first time a particular folder is used by a container.
 
 If you run a Docker command from a shell with a volume mount (as shown in the
 example below) or kick off a Compose file that includes volume mounts, you get a
-popup asking if you want to share the specified drive.
+popup asking if you want to share the specified folder.
 
-You can select to **Share it**, in which case it is added your Docker Desktop [Shared Drives list](index.md#shared-drives) and available to
+You can select to **Share it**, in which case it is added your Docker Desktop Shared Folders list and available to
 containers. Alternatively, you can opt not to share it by selecting **Cancel**.
 
-![Shared drive on demand](images/shared-drive-on-demand.png){:width="600px"}
+![Shared folder on demand](images/shared-folder-on-demand.png){:width="600px"}
 
 #### Proxies
 
 Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and
-automatically propagates these to Docker and to your containers.  For example,
-if you set your proxy settings to `http://proxy.example.com`, Docker uses this
-proxy when pulling containers.
+automatically propagates these to Docker. For example, if you set your proxy
+settings to `http://proxy.example.com`, Docker uses this proxy when pulling containers.
 
-When you start a container, your proxy settings propagate into the containers. For example:
+Your proxy settings, however, will not be propagated into the containers you start.
+If you wish to set the proxy settings for your containers, you need to define
+environment variables for them, just like you would do on Linux, for example:
 
 ```ps
-> docker run alpine env
+> docker run -e HTTP_PROXY=https://proxy.example.com:3128 alpine env
 
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 HOSTNAME=b7edf988b2b5
 TERM=xterm
 HOME=/root
 HTTP_PROXY=http://proxy.example.com:3128
-http_proxy=http://proxy.example.com:3128
-no_proxy=*.local, 169.254/16
 ```
 
-In the output above, the `HTTP_PROXY`, `http_proxy`, and `no_proxy` environment
-variables are set. When your proxy configuration changes, Docker restarts
-automatically to pick up the new settings. If you have containers that you wish
-to keep running across restarts, you should consider using
-[restart policies](/engine/reference/run/#restart-policies-restart).
+For more information on setting environment variables for running containers,
+see [Set environment variables](/engine/reference/commandline/run/#set-environment-variables--e---env---env-file).
 
 #### Network
+
+> **Note**
+>
+> The Network tab is not available in Windows container mode because networking is 
+> managed by Windows.
 
 You can configure Docker Desktop networking to work on a virtual private network (VPN). Specify a network address translation (NAT) prefix and subnet mask to enable Internet connectivity.
 
 **DNS Server**: You can configure the DNS server to use dynamic or static IP addressing.
 
-> **Note**: Some users reported problems connecting to Docker Hub on Docker Desktop Stable version. This would manifest as an error when trying to run
-> `docker` commands that pull images from Docker Hub that are not already
-> downloaded, such as a first time run of `docker run hello-world`. If you
-> encounter this, reset the DNS server to use the Google DNS fixed address:
-> `8.8.8.8`. For more information, see
-> [Networking issues](troubleshoot.md#networking-issues) in Troubleshooting.
+> **Note**
+>
+> Some users reported problems connecting to Docker Hub on Docker Desktop. This would manifest as an error when trying to run
+`docker` commands that pull images from Docker Hub that are not already
+downloaded, such as a first time run of `docker run hello-world`. If you
+encounter this, reset the DNS server to use the Google DNS fixed address:
+`8.8.8.8`. For more information, see
+[Networking issues](troubleshoot.md#networking-issues) in Troubleshooting.
 
 Updating these settings requires a reconfiguration and reboot of the Linux VM.
+
+#### WSL Integration
+
+In WSL 2 mode, you can configure which WSL 2 distributions will have the Docker 
+WSL integration.
+
+By default, the integration will be enabled on your default WSL distribution. 
+To change your default WSL distro, run `wsl --set-default <distro name>`. (For example, 
+to set Ubuntu as your default WSL distro, run `wsl --set-default ubuntu`).
+
+You can also select any additional distributions you would like to enable the WSL 2 
+integration on.
+
+For more details on configuring Docker Desktop to use WSL 2, see 
+[Docker Desktop WSL 2 backend](wsl.md).
 
 ### Docker Engine
 
@@ -317,12 +203,9 @@ Click **Apply & Restart** to save your settings and restart Docker Desktop.
 
 On the Command Line page, you can specify whether or not to enable experimental features.
 
-On both Docker Desktop Edge and Stable releases, you can toggle the experimental features on and off. If you toggle the experimental features off, Docker Desktop uses the current generally available release of Docker Engine.
+You can toggle the experimental features on and off in Docker Desktop. If you toggle the experimental features off, Docker Desktop uses the current generally available release of Docker Engine.
 
 #### Experimental features
-
-Docker Desktop Edge releases have the experimental version
-of Docker Engine enabled by default, described in the [Docker Experimental Features README](https://github.com/docker/cli/blob/master/experimental/README.md) on GitHub.
 
 {% include experimental.md %}
 
@@ -364,6 +247,10 @@ Server: Docker Engine - Community
 
 ### Kubernetes
 
+> **Note**
+>
+> The Kubernetes tab is not available in Windows container mode.
+
 Docker Desktop includes a standalone Kubernetes server that runs on your Windows host, so that you can test deploying your Docker workloads on Kubernetes.
 
 ![Enable Kubernetes](images/settings-kubernetes.png){:width="750px"}
@@ -382,7 +269,7 @@ to change context so that `kubectl` is pointing to `docker-desktop`:
   running as a Docker container, select **Enable Kubernetes**.
 
 To set Kubernetes as the
-  [default orchestrator](/docker-for-mac/kubernetes/#override-the-default-orchestrator), select **Deploy Docker Stacks to Kubernetes by default**.
+  [default orchestrator](/docker-for-windows/kubernetes/#override-the-default-orchestrator), select **Deploy Docker Stacks to Kubernetes by default**.
 
 By default, Kubernetes containers are hidden from commands like `docker
 service ls`, because managing them manually is not supported. To make them
@@ -459,16 +346,16 @@ again when you switch back.
 
 ## Dashboard
 
-The Docker Desktop Dashboard enables you to interact with containers and applications and manage the lifecycle of your applications directly from your machine. The Dashboard UI shows all running, stopped, and started containers with their state. It provides an intuitive interface to perform common actions to inspect and manage containers and Docker Compose applications. For more information, see [Docker Desktop Dashboard](dashboard.md).
+The Docker Desktop Dashboard enables you to interact with containers and applications and manage the lifecycle of your applications directly from your machine. The Dashboard UI shows all running, stopped, and started containers with their state. It provides an intuitive interface to perform common actions to inspect and manage containers and Docker Compose applications. For more information, see [Docker Desktop Dashboard](../desktop/dashboard.md).
 
 ## Docker Hub
 
-Select **Sign in /Create Docker ID** from the Docker Desktop menu to access your [Docker Hub](https://hub.docker.com/){: target="_blank" class="_" } account. Once logged in, you can access your Docker Hub repositories directly from the Docker Desktop menu.
+Select **Sign in /Create Docker ID** from the Docker Desktop menu to access your [Docker Hub](https://hub.docker.com/){: target="_blank" rel="noopener" class="_" } account. Once logged in, you can access your Docker Hub repositories directly from the Docker Desktop menu.
 
-For more information, refer to the following [Docker Hub topics](../docker-hub/index.md){: target="_blank" class="_" }:
+For more information, refer to the following [Docker Hub topics](../docker-hub/index.md){: target="_blank" rel="noopener" class="_" }:
 
-* [Organizations and Teams in Docker Hub](../docker-hub/orgs.md){: target="_blank" class="_" }
-* [Builds and Images](../docker-hub/builds/index.md){: target="_blank" class="_" }
+* [Organizations and Teams in Docker Hub](../docker-hub/orgs.md){: target="_blank" rel="noopener" class="_" }
+* [Builds and Images](../docker-hub/builds/index.md){: target="_blank" rel="noopener" class="_" }
 
 ### Two-factor authentication
 
@@ -505,7 +392,7 @@ Docker Desktop creates a certificate bundle of all user-trusted CAs based on
 the Windows certificate store, and appends it to Moby trusted certificates. Therefore, if an enterprise SSL certificate is trusted by the user on the host, it is trusted by Docker Desktop.
 
 To learn more about how to install a CA root certificate for the registry, see
-[Verify repository client with certificates](/engine/security/certificates)
+[Verify repository client with certificates](../engine/security/certificates.md)
 in the Docker Engine topics.
 
 ### How do I add client certificates?
@@ -533,8 +420,8 @@ in the Docker Engine topics.
 
 ## Where to go next
 
-* Try out the walkthrough at [Get Started](../get-started/index.md){: target="_blank" class="_"}.
+* Try out the walkthrough at [Get Started](../get-started/index.md){: target="_blank" rel="noopener" class="_"}.
 
 * Dig in deeper with [Docker Labs](https://github.com/docker/labs/) example walkthroughs and source code.
 
-* Refer to the [Docker CLI Reference Guide](/engine/reference/commandline/cli/){: target="_blank" class="_"}.
+* Refer to the [Docker CLI Reference Guide](/engine/reference/commandline/cli/){: target="_blank" rel="noopener" class="_"}.

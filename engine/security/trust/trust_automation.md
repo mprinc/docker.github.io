@@ -9,7 +9,7 @@ systems. To allow tools to wrap Docker and push trusted content, there are
 environment variables that can be passed through to the client. 
 
 This guide follows the steps as described 
-[here](content_trust/#signing-images-with-docker-content-trust) so please read 
+[here](index.md#signing-images-with-docker-content-trust) so please read 
 that and understand its prerequisites. 
 
 When working directly with the Notary client, it uses its [own set of environment variables](../../../notary/reference/client-config.md#environment-variables-optional).
@@ -43,11 +43,11 @@ $ export DOCKER_CONTENT_TRUST_ROOT_PASSPHRASE="rootpassphrase123"
 $ export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="repopassphrase123"
 
 # Initialise Repo and Push Delegation
-$ docker trust signer add --key delegation.crt jeff dtr.example.com/admin/demo
-Adding signer "jeff" to dtr.example.com/admin/demo...
-Initializing signed repository for dtr.example.com/admin/demo...
-Successfully initialized "dtr.example.com/admin/demo"
-Successfully added signer: dtr.example.com/admin/demo
+$ docker trust signer add --key delegation.crt jeff registry.example.com/admin/demo
+Adding signer "jeff" to registry.example.com/admin/demo...
+Initializing signed repository for registry.example.com/admin/demo...
+Successfully initialized "registry.example.com/admin/demo"
+Successfully added signer: registry.example.com/admin/demo
 ```
 
 ## Sign an image
@@ -59,13 +59,13 @@ trust store with `$ docker trust key load`.
 ```
 $ export DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE="mypassphrase123"
 
-$ docker trust sign dtr.example.com/admin/demo:1
-Signing and pushing trust data for local image dtr.example.com/admin/demo:1, may overwrite remote trust data
-The push refers to repository [dtr.example.com/admin/demo]
+$ docker trust sign registry.example.com/admin/demo:1
+Signing and pushing trust data for local image registry.example.com/admin/demo:1, may overwrite remote trust data
+The push refers to repository [registry.example.com/admin/demo]
 428c97da766c: Layer already exists
 2: digest: sha256:1a6fd470b9ce10849be79e99529a88371dff60c60aab424c077007f6979b4812 size: 524
 Signing and pushing trust metadata
-Successfully signed dtr.example.com/admin/demo:1
+Successfully signed registry.example.com/admin/demo:1
 ```
 
 ## Build with content trust
@@ -104,6 +104,6 @@ unable to process Dockerfile: No trust data for notrust
 ## Related information
 
 * [Delegations for content trust](trust_delegation.md)
-* [Content trust in Docker](content_trust.md)
+* [Content trust in Docker](index.md)
 * [Manage keys for content trust](trust_key_mng.md)
 * [Play in a content trust sandbox](trust_sandbox.md)

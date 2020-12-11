@@ -7,6 +7,154 @@ redirect_from:
   - /release-notes/docker-compose/
 ---
 
+## 1.27.4 
+(2020-09-24)
+
+### Bugs
+
+- Removed path checks for bind mounts.
+
+- Fixed port rendering to output long form syntax for non-v1.
+
+- Added protocol to the Docker socket address.
+
+## 1.27.3 
+(2020-09-16)
+
+### Bugs
+
+- Merged `max_replicas_per_node` on `docker-compose config`.
+
+- Fixed `depends_on` serialization on `docker-compose config`.
+
+- Fixed scaling when some containers are not running on `docker-compose up`.
+
+- Enabled relative paths for `driver_opts.device` for `local` driver.
+
+- Allowed strings for `cpus` fields.
+
+## 1.27.2
+(2020-09-10)
+
+### Bugs
+
+- Fixed bug on `docker-compose run` container attach.
+
+## 1.27.1
+(2020-09-10)
+
+### Bugs
+
+- Fixed `docker-compose run` when `service.scale` is specified.
+
+- Allowed the `driver` property for external networks as a temporary workaround for the Swarm network propagation issue.
+
+- Pinned the new internal schema version to `3.9` as the default.
+
+- Preserved the version number configured in the Compose file.
+
+## 1.27.0 
+(2020-09-07)
+
+### Features
+
+- Merged 2.x and 3.x Compose formats and aligned with `COMPOSE_SPEC` schema.
+
+- Implemented service mode for `ipc`.
+
+- Passed `COMPOSE_PROJECT_NAME` environment variable in container mode.
+
+- Made `run` behave in the same way as `up`.
+
+- Used `docker build` on `docker-compose run` when `COMPOSE_DOCKER_CLI_BUILD` environment variable is set.
+
+- Used the docker-py default API version for engine queries (`auto`).
+
+- Parsed `network_mode` on build.
+
+### Bugs
+
+- Ignored build context path validation when building is not required.
+
+- Fixed float to bytes conversion via docker-py bump to 4.3.1.
+
+- Fixed the scale bug when the deploy section is set.
+
+- Fixed `docker-py` bump in `setup.py`.
+
+- Fixed experimental build failure detection.
+
+- Fixed context propagation to the Docker CLI.
+
+### Miscellaneous
+
+- Bumped `docker-py` to 4.3.1.
+
+- Bumped `tox` to 3.19.0.
+
+- Bumped `virtualenv` to 20.0.30.
+
+- Added script for Docs synchronization.
+
+## 1.26.2
+(2020-07-02)
+
+### Bug fixes
+
+- Enforced `docker-py` 4.2.2 as minimum version when installing with pip.
+
+## 1.26.1
+(2020-06-30)
+
+### Features
+
+- Bumped `docker-py` from 4.2.1 to 4.2.2.
+
+### Bug fixes
+
+- Enforced `docker-py` 4.2.1 as minimum version when installing with pip.
+
+- Fixed context load for non-docker endpoints.
+
+## 1.26.0
+(2020-06-03)
+
+### Features
+
+- Added `docker context` support.
+
+- Added missing test dependency `ddt` to `setup.py`.
+
+- Added `--attach-dependencies` to command `up` for attaching to dependencies.
+
+- Allowed compatibility option with `COMPOSE_COMPATIBILITY` environment variable.
+
+- Bumped `Pytest` to 5.3.4 and add refactor compatibility with the new version.
+
+- Bumped `OpenSSL` from 1.1.1f to 1.1.1g.
+
+- Bumped `certifi` from 2019.11.28 to 2020.4.5.1.
+
+- Bumped `docker-py` from 4.2.0 to 4.2.1.
+
+### Bug fixes
+
+- Properly escaped values coming from `env_files`.
+
+- Synchronized compose-schemas with upstream (docker/cli).
+
+- Removed `None` entries on exec command.
+
+- Added `distro` package to get distro information.
+
+- Added `python-dotenv` to delegate `.env` file processing.
+
+- Stopped adjusting output on terminal width when piped into another command.
+
+- Showed an error message when `version` attribute is malformed.
+
+- Fixed HTTPS connection when `DOCKER_HOST` is remote.
+
 ## 1.25.5
 (2020-04-10)
 
@@ -1069,7 +1217,7 @@ naming scheme accordingly before upgrading.
   to separate the `COMPOSE_FILE` environment value using the
   `COMPOSE_PATH_SEPARATOR` environment variable
 
-- Added support for port range to single port in port mappings, such as
+- Added support for port range to a single port in port mappings, such as
   `8000-8010:80`.
 
 ### Bug Fixes
@@ -1162,7 +1310,7 @@ naming scheme accordingly before upgrading.
 
 ### Bug Fixes
 
-- Fixed an issue where presence of older versions of the docker-py
+- Fixed an issue where the presence of older versions of the docker-py
   package would cause unexpected crashes while running Compose
 
 - Fixed an issue where healthcheck dependencies would be lost when
@@ -1437,8 +1585,8 @@ naming scheme accordingly before upgrading.
 ### Breaking Changes
 
 -   `docker-compose logs` no longer follows log output by default. It now
-    matches the behaviour of `docker logs` and exits after the current logs
-    are printed. Use `-f` to get the old default behaviour.
+    matches the behavior of `docker logs` and exits after the current logs
+    are printed. Use `-f` to get the old default behavior.
 
 -   Booleans are no longer allows as values for mappings in the Compose file
     (for keys `environment`, `labels` and `extra_hosts`). Previously this
@@ -1679,7 +1827,7 @@ naming scheme accordingly before upgrading.
 -   Fixed an incorrect warning when a container volume was defined in
     the Compose file.
 
--   Fixed a bug that prevented the force shutdown behaviour of `up` and
+-   Fixed a bug that prevented the force shutdown behavior of `up` and
     `logs`.
 
 -   Fixed a bug that caused `None` to be printed as the network driver name
@@ -1983,7 +2131,7 @@ Thanks @dano, @josephpage, @kevinsimper, @lieryan, @phemmer, @soulrebel and @ssc
 
 ### New features
 
-- `docker-compose up` has an **experimental** new behaviour: it will only recreate containers for services whose configuration has changed in `docker-compose.yml`. This will eventually become the default, but for now you can take it for a spin:
+- `docker-compose up` has an **experimental** new behavior: it will only recreate containers for services whose configuration has changed in `docker-compose.yml`. This will eventually become the default, but for now you can take it for a spin:
 
         $ docker-compose up --x-smart-recreate
 
@@ -2172,7 +2320,7 @@ Thanks @ryanbrainard and @d11wtq!
 
  - The `net` and `workdir` options are now supported in `fig.yml`.
  - The `hostname` option now works in the same way as the Docker CLI, splitting out into a `domainname` option.
- - TTY behaviour is far more robust, and resizes are supported correctly.
+ - TTY behavior is far more robust, and resizes are supported correctly.
  - Load YAML files safely.
 
 Thanks to @d11wtq, @ryanbrainard, @rail44, @j0hnsmith, @binarin, @Elemecca, @mozz100 and @marksteve for their help with this release!
@@ -2296,7 +2444,7 @@ Big thanks to @tomstuart, @EnTeQuAk, @schickling, @aronasorman and @GeoffreyPlit
 
  - Improve documentation
  - Try to connect to Docker on `tcp://localdocker:4243` and a UNIX socket in addition to `localhost`.
- - Improve `fig up` behaviour
+ - Improve `fig up` behavior
  - Add confirmation prompt to `fig rm`
  - Add `fig build` command
 

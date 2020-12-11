@@ -4,7 +4,7 @@ keywords: fig, composition, compose, versions, upgrading, docker
 title: Compose file versions and upgrading
 ---
 
-The Compose file is a [YAML](http://yaml.org/) file defining services,
+The Compose file is a [YAML](https://yaml.org) file defining services,
 networks, and volumes for a Docker application.
 
 The Compose file formats are now described in these references, specific to each version.
@@ -375,6 +375,23 @@ Introduces the following additional parameters:
 - Support for extension fields at the root of service, network, volume, secret
   and config definitions
 
+### Version 3.8
+
+An upgrade of [version 3](#version-3) that introduces new parameters. It is
+only available with Docker Engine version **19.03.0** and higher.
+
+Introduces the following additional parameters:
+
+- [`max_replicas_per_node`](index.md#max_replicas_per_node) in placement
+  configurations
+- `template_driver` option for [config](index.md#configs-configuration-reference)
+   and [secret](index.md#secrets-configuration-reference) configurations. This
+   option is only supported when deploying swarm services using
+   `docker stack deploy`.
+- `driver` and `driver_opts` option for [secret](index.md#secrets-configuration-reference)
+   configurations. This option is only supported when deploying swarm services
+   using `docker stack deploy`.
+
 ## Upgrading
 
 ### Version 2.x to 3.x
@@ -436,10 +453,8 @@ It's more complicated if you're using particular configuration features:
           options:
             syslog-address: "tcp://192.168.0.42:123"
 
--   `links` with environment variables: As documented in the
-    [environment variables reference](../link-env-deprecated.md), environment variables
-    created by
-    links have been deprecated for some time. In the new Docker network system,
+-   `links` with environment variables: environment variables created by
+    links, such as `CONTAINERNAME_PORT`, ` have been deprecated for some time. In the new Docker network system,
     they have been removed. You should either connect directly to the
     appropriate hostname or set the relevant environment variable yourself,
     using the link hostname:

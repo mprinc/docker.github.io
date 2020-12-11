@@ -24,12 +24,12 @@ To get started with Docker Engine on Ubuntu, make sure you
 To install Docker Engine, you need the 64-bit version of one of these Ubuntu
 versions:
 
-- Ubuntu Eoan 19.10
+- Ubuntu Groovy 20.10
+- Ubuntu Focal 20.04 (LTS)
 - Ubuntu Bionic 18.04 (LTS)
 - Ubuntu Xenial 16.04 (LTS)
 
-Docker Engine is supported on `x86_64` (or `amd64`), `armhf`, `arm64`, `s390x`
-(IBM Z), and `ppc64le` (IBM Power) architectures.
+Docker Engine is supported on `x86_64` (or `amd64`), `armhf`, and `arm64` architectures.
 
 ### Uninstall old versions
 
@@ -43,7 +43,9 @@ $ sudo apt-get remove docker docker-engine docker.io containerd runc
 It's OK if `apt-get` reports that none of these packages are installed.
 
 The contents of `/var/lib/docker/`, including images, containers, volumes, and
-networks, are preserved. The Docker Engine package is now called `docker-ce`.
+networks, are preserved. If you do not need to save your existing data, and want to
+start with a clean installation, refer to the [uninstall Docker Engine](#uninstall-docker-engine)
+section at the bottom of this page.
 
 ### Supported storage drivers
 
@@ -128,8 +130,6 @@ from the repository.
       <li class="active"><a data-toggle="tab" data-target="#x86_64_repo">x86_64 / amd64</a></li>
       <li><a data-toggle="tab" data-target="#armhf_repo">armhf</a></li>
       <li><a data-toggle="tab" data-target="#arm64_repo">arm64</a></li>
-      <li><a data-toggle="tab" data-target="#ppc64le_repo">ppc64le (IBM Power)</a></li>
-      <li><a data-toggle="tab" data-target="#s390x_repo">s390x (IBM Z)</a></li>
     </ul>
     <div class="tab-content">
     <div id="x86_64_repo" class="tab-pane fade in active" markdown="1">
@@ -157,26 +157,6 @@ from the repository.
     ```bash
     $ sudo add-apt-repository \
        "deb [arch=arm64] {{ download-url-base }} \
-       $(lsb_release -cs) \
-       stable"
-    ```
-
-    </div>
-    <div id="ppc64le_repo" class="tab-pane fade" markdown="1">
-
-    ```bash
-    $ sudo add-apt-repository \
-       "deb [arch=ppc64el] {{ download-url-base }} \
-       $(lsb_release -cs) \
-       stable"
-    ```
-
-    </div>
-    <div id="s390x_repo" class="tab-pane fade" markdown="1">
-
-    ```bash
-    $ sudo add-apt-repository \
-       "deb [arch=s390x] {{ download-url-base }} \
        $(lsb_release -cs) \
        stable"
     ```
@@ -250,9 +230,9 @@ If you cannot use Docker's repository to install Docker Engine, you can download
 `.deb` file for your release and install it manually. You need to download
 a new file each time you want to upgrade Docker.
 
-1.  Go to [`{{ download-url-base }}/dists/`]({{ download-url-base }}/dists/){: target="_blank" class="_" },
+1.  Go to [`{{ download-url-base }}/dists/`]({{ download-url-base }}/dists/){: target="_blank" rel="noopener" class="_" },
     choose your Ubuntu version, then browse to `pool/stable/`, choose `amd64`,
-    `armhf`, `arm64`, `ppc64el`, or `s390x`, and download the `.deb` file for the
+    `armhf`, or `arm64`, and download the `.deb` file for the
     Docker Engine version you want to install.
 
     > **Note**: To install a **nightly** or **test** (pre-release) package,

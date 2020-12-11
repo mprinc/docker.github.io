@@ -15,7 +15,6 @@ Dockerfile consists of:
 
     FROM ruby:2.5
     RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-    RUN mkdir /myapp
     WORKDIR /myapp
     COPY Gemfile /myapp/Gemfile
     COPY Gemfile.lock /myapp/Gemfile.lock
@@ -68,34 +67,41 @@ one's Docker image (the database just runs on a pre-made PostgreSQL image, and
 the web app is built from the current directory), and the configuration needed
 to link them together and expose the web app's port.
 
-    version: '3'
-    services:
-      db:
-        image: postgres
-        volumes:
-          - ./tmp/db:/var/lib/postgresql/data
-      web:
-        build: .
-        command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-        volumes:
-          - .:/myapp
-        ports:
-          - "3000:3000"
-        depends_on:
-          - db
+```yaml
+version: "{{ site.compose_file_v3 }}"
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+```
 
->**Tip**: You can use either a `.yml` or `.yaml` extension for this file.
+> **Tip**
+>
+> You can use either a `.yml` or `.yaml` extension for this file.
 
 ### Build the project
 
 With those files in place, you can now generate the Rails skeleton app
 using [docker-compose run](reference/run.md):
 
-    docker-compose run web rails new . --force --no-deps --database=postgresql
+    docker-compose run --no-deps web rails new . --force --database=postgresql
 
-First, Compose builds the image for the `web` service using the
-`Dockerfile`. Then it runs `rails new` inside a new container, using that
-image. Once it's done, you should have generated a fresh app.
+First, Compose builds the image for the `web` service using the `Dockerfile`.
+The `--no-deps` tells Compose not to start linked services. Then it runs
+`rails new` inside a new container, using that image. Once it's done, you
+should have generated a fresh app.
 
 List the files.
 
@@ -156,7 +162,7 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password:
+  password: password
   pool: 5
 
 development:
@@ -208,10 +214,6 @@ That's it. Your app should now be running on port 3000 on your Docker daemon.
 
 On Docker Desktop for Mac and Docker Desktop for Windows, go to `http://localhost:3000` on a web
 browser to see the Rails Welcome.
-
-If you are using [Docker Machine](../machine/overview.md), then `docker-machine ip
-MACHINE_VM` returns the Docker host IP address, to which you can append the port
-(`<Docker-Host-IP>:3000`).
 
 ![Rails example](images/rails-welcome.png)
 
@@ -267,7 +269,6 @@ host.
 - [User guide](index.md)
 - [Installing Compose](install.md)
 - [Getting Started](gettingstarted.md)
-- [Get started with Django](django.md)
-- [Get started with WordPress](wordpress.md)
 - [Command line reference](reference/index.md)
 - [Compose file reference](compose-file/index.md)
+- [Sample apps with Compose](samples-for-compose.md)

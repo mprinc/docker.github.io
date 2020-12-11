@@ -9,37 +9,30 @@ You can download Docker Desktop for Mac from Docker Hub.
 
 [Download from Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-mac/){: .button .outline-btn}
 
-By downloading Docker Desktop, you agree to the terms of the [Docker Software End User License Agreement](https://www.docker.com/legal/docker-software-end-user-license-agreement){: target="_blank" class="_"} and the [Docker Data Processing Agreement](https://www.docker.com/legal/data-processing-agreement){: target="_blank" class="_"}.
+By downloading Docker Desktop, you agree to the terms of the [Docker Software End User License Agreement](https://www.docker.com/legal/docker-software-end-user-license-agreement){: target="_blank" rel="noopener" class="_"} and the [Docker Data Processing Agreement](https://www.docker.com/legal/data-processing-agreement){: target="_blank" rel="noopener" class="_"}.
 
 ## What to know before you install
-
-> README FIRST for Docker Toolbox and Docker Machine users
->
->If you are already running Docker on your machine, first read
-[Docker Desktop for Mac vs. Docker Toolbox](docker-toolbox.md) to understand the
-impact of this installation on your existing setup, how to set your environment
-for Docker Desktop on Mac, and how the two products can coexist.
 
 **Relationship to Docker Machine**: Installing Docker Desktop on Mac does not affect machines you created with Docker Machine. You have the option to copy containers and images from your local `default` machine (if one exists) to the Docker Desktop [HyperKit](https://github.com/docker/HyperKit/) VM. When
 you are running Docker Desktop, you do not need Docker Machine nodes running locally (or anywhere else). With Docker Desktop, you have a new, native
 virtualization system running (HyperKit) which takes the place of the
-VirtualBox system. To learn more, see [Docker Desktop for Mac vs. Docker Toolbox](docker-toolbox.md).
+VirtualBox system.
 
 ## System requirements
 
 Your Mac must meet the following requirements to successfully install Docker Desktop:
 
-- **Mac hardware must be a 2010 or a newer model**, with Intel’s hardware support for memory management unit (MMU) virtualization, including Extended Page Tables (EPT) and Unrestricted Mode. You can check to see if your machine has this support by running the following command in a terminal: `sysctl kern.hv_support`
+- **Mac hardware must be a 2010 or a newer model with an Intel processor**, with Intel’s hardware support for memory management unit (MMU) virtualization, including Extended Page Tables (EPT) and Unrestricted Mode. You can check to see if your machine has this support by running the following command in a terminal: `sysctl kern.hv_support`
 
   If your Mac supports the Hypervisor framework, the command prints `kern.hv_support: 1`.
 
-- **macOS must be version 10.13 or newer**. That is, Catalina, Mojave, or High Sierra. We recommend upgrading to the latest version of macOS.
+- **macOS must be version 10.14 or newer**. That is, Mojave, Catalina, or Big Sur. We recommend upgrading to the latest version of macOS.
 
   If you experience any issues after upgrading your macOS to version 10.15, you must install the latest version of Docker Desktop to be compatible with this version of macOS.
 
-  **Note:** Docker supports Docker Desktop on the most recent versions of macOS. That is, the current release of macOS and the previous two releases. Docker Desktop currently supports macOS Catalina, macOS Mojave, and macOS High Sierra.
+  **Note:** Docker supports Docker Desktop on the most recent versions of macOS. Docker Desktop currently supports macOS Mojave, macOS Catalina, and macOS Big Sur.
 
-    As new major versions of macOS are made generally available, Docker stops supporting the oldest version and support the newest version of macOS (in addition to the previous two releases).
+    As new major versions of macOS are made generally available, Docker stops supporting the oldest version and support the newest version of macOS.
 
 - At least 4 GB of RAM.
 
@@ -62,19 +55,13 @@ The Docker Desktop installation includes
 
     ![Docker app in Hockeyapp](images/docker-app-in-apps.png)
 
-    You are prompted to authorize `Docker.app` with your system password after you launch it.
-    Privileged access is needed to install networking components and links to the Docker apps.
-
     The Docker menu in the top status bar indicates that Docker Desktop is running, and accessible from a terminal.
 
       ![Whale in menu bar](images/whale-in-menu-bar.png)
 
-    If you just installed the app, you also get a message with suggested
-    next steps and a link to the documentation. Click the Docker menu (![whale
-    menu](images/whale-x.png){: .inline}) in the status bar to
-    dismiss this pop-up notification.
+    If you've just installed the app, Docker Desktop launches the onboarding tutorial. The tutorial includes a simple exercise to build an example Docker image, run it as a container, push and save the image to Docker Hub.
 
-      ![Startup information](images/mac-install-success.png)
+    ![Docker Quick Start tutorial](images/docker-tutorial-mac.png)
 
 3. Click the Docker menu (![whale menu](images/whale-x.png){: .inline}) to see
 **Preferences** and other options.
@@ -82,6 +69,15 @@ The Docker Desktop installation includes
 4. Select **About Docker** to verify that you have the latest version.
 
 Congratulations! You are now successfully running Docker Desktop.
+
+If you would like to rerun the tutorial, go to the Docker Desktop menu 
+and select **Learn**.
+
+## Automatic updates
+
+Starting with Docker Desktop 3.0.0, updates to Docker Desktop will be available automatically as delta updates from the previous version.
+
+When an update is available, Docker Desktop automatically downloads it to your machine and displays an icon to indicate the availability of a newer version. All you need to do now is to click **Update and restart** from the Docker menu. This installs the latest update and restarts Docker Desktop for the changes to take effect.
 
 ## Uninstall Docker Desktop
 
@@ -92,21 +88,9 @@ To unistall Docker Desktop from your Mac:
 
 > **Note:** Uninstalling Docker Desktop will destroy Docker containers and images local to the machine and remove the files generated by the application.
 
-## Switch between Stable and Edge versions
-
-Docker Desktop allows you to switch between Stable and Edge releases. However, **you can only have one version of Docker Desktop installed at a time**. Switching between Stable and Edge versions can destabilize your development environment, particularly in cases where you switch from a newer (Edge) channel to an older (Stable) channel.
-
-For example, containers created with a newer Edge version of Docker Desktop may
-not work after you switch back to Stable because they may have been created
-using Edge features that aren't in Stable yet. Keep this in mind as
-you create and work with Edge containers, perhaps in the spirit of a playground
-space where you are prepared to troubleshoot or start over.
-
-To safely switch between Edge and Stable versions, ensure you save images and export the containers you need, then uninstall the current version before installing another. For more information, see the section Save and Restore data below.
-
 ### Save and restore data
 
-You can use the following procedure to save and restore images and container data. For example, if you want to switch between Edge and Stable, or to reset your VM disk:
+You can use the following procedure to save and restore images and container data. For example to reset your VM disk:
 
 1. Use `docker save -o images.tar image1 [image2 ...]` to save any images you
     want to keep. See [save](/engine/reference/commandline/save) in the Docker
@@ -133,7 +117,5 @@ For information on how to back up and restore data volumes, see [Backup, restore
 - [Troubleshooting](troubleshoot.md) describes common problems, workarounds, how
   to run and submit diagnostics, and submit issues.
 - [FAQs](faqs.md) provide answers to frequently asked questions.
-- [Release notes](release-notes.md) lists component updates, new features, and
-  improvements associated with Stable releases. For information about Edge releases, see
-  [Edge release notes](edge-release-notes.md).
+- [Release notes](release-notes.md) lists component updates, new features, and improvements associated with Docker Desktop releases.
 - [Get started with Docker](/get-started/) provides a general Docker tutorial.

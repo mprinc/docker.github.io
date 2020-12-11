@@ -59,6 +59,7 @@ services:
       - backend
     deploy:
       placement:
+        max_replicas_per_node: 1
         constraints:
           - "node.role==manager"
 
@@ -142,7 +143,7 @@ Compose file.
 
 ## Service configuration reference
 
-The Compose file is a [YAML](http://yaml.org/) file defining
+The Compose file is a [YAML](https://yaml.org) file defining
 [services](#service-configuration-reference),
 [networks](#network-configuration-reference) and
 [volumes](#volume-configuration-reference).
@@ -515,7 +516,7 @@ the service's task containers.
   because they are mounted in a temporary filesystem, so if you set the writable
   bit, it is ignored. The executable bit can be set. If you aren't familiar with
   UNIX file permission modes, you may find this
-  [permissions calculator](http://permissions-calculator.org/){: target="_blank" class="_" }
+  [permissions calculator](http://permissions-calculator.org/){: target="_blank" rel="noopener" class="_" }
   useful.
 
 The following example sets the name of `my_config` to `redis_config` within the
@@ -579,7 +580,10 @@ format `file://<filename>` or `registry://<value-name>`.
 When using `file:`, the referenced file must be present in the `CredentialSpecs`
 subdirectory in the Docker data directory, which defaults to `C:\ProgramData\Docker\`
 on Windows. The following example loads the credential spec from a file named
-`C:\ProgramData\Docker\CredentialSpecs\my-credential-spec.json`:
+
+```
+C:\ProgramData\Docker\CredentialSpecs\my-credential-spec.json
+```
 
 ```yaml
 credential_spec:
@@ -672,6 +676,8 @@ services:
     image: redis:alpine
     deploy:
       replicas: 6
+      placement:
+        max_replicas_per_node: 1
       update_config:
         parallelism: 2
         delay: 10s
@@ -791,8 +797,9 @@ services:
 
 Specify placement of constraints and preferences. See the docker service create
 documentation for a full description of the syntax and available types of
-[constraints](../../engine/reference/commandline/service_create.md#specify-service-constraints---constraint)
-and [preferences](../../engine/reference/commandline/service_create.md#specify-service-placement-preferences---placement-pref).
+[constraints](../../engine/reference/commandline/service_create.md#specify-service-constraints---constraint),
+[preferences](../../engine/reference/commandline/service_create.md#specify-service-placement-preferences---placement-pref),
+and [specifying the maximum replicas per node](../../engine/reference/commandline/service_create.md#specify-maximum-replicas-per-node---replicas-max-per-node)
 
 ```yaml
 version: "{{ site.compose_file_v3 }}"
@@ -806,6 +813,31 @@ services:
           - "engine.labels.operatingsystem==ubuntu 18.04"
         preferences:
           - spread: node.labels.zone
+```
+
+#### max_replicas_per_node
+
+> Added in [version 3.8](compose-versioning.md#version-38) file format.
+
+If the service is `replicated` (which is the default), [limit the number of replicas](../../engine/reference/commandline/service_create.md#specify-maximum-replicas-per-node---replicas-max-per-node)
+that can run on a node at any time.
+
+When there are more tasks requested than running nodes, an error
+`no suitable node (max replicas per node limit exceed)` is raised.
+
+```yaml
+version: "{{ site.compose_file_v3 }}"
+services:
+  worker:
+    image: dockersamples/examplevotingapp_worker
+    networks:
+      - frontend
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 6
+      placement:
+        max_replicas_per_node: 1
 ```
 
 #### replicas
@@ -824,29 +856,6 @@ services:
     deploy:
       mode: replicated
       replicas: 6
-```
-
-#### max_replicas_per_node
-
-If the service is `replicated` (which is the default), [limit the number of replicas](/engine/reference/commandline/service_create.md#specify-maximum-replicas-per-node---replicas-max-per-node)
-that can run on an node at any time.
-
-> **[Version 3.8](compose-versioning.md#version-3) and above.**
-
-When there are more tasks requested than running nodes, an error `no suitable node (max replicas per node limit exceed)` is raised.
-
-```yaml
-version: "{{ site.compose_file_v3 }}"
-services:
-  worker:
-    image: dockersamples/examplevotingapp_worker
-    networks:
-      - frontend
-      - backend
-    deploy:
-      mode: replicated
-      replicas: 6
-      max_replicas_per_node: 1
 ```
 
 #### resources
@@ -893,7 +902,7 @@ services or containers in a swarm.
 on non swarm deployments, use
 [Compose file format version 2 CPU, memory, and other resource options](compose-file-v2.md#cpu-and-other-resources).
 If you have further questions, refer to the discussion on the GitHub
-issue [docker/compose/4513](https://github.com/docker/compose/issues/4513){: target="_blank" class="_"}.
+issue [docker/compose/4513](https://github.com/docker/compose/issues/4513){: target="_blank" rel="noopener" class="_"}.
 {: .important}
 
 ##### Out Of Memory Exceptions (OOME)
@@ -912,7 +921,7 @@ Configures if and how to restart containers when they exit. Replaces
 
 - `condition`: One of `none`, `on-failure` or `any` (default: `any`).
 - `delay`: How long to wait between restart attempts, specified as a
-  [duration](#specifying-durations) (default: 0).
+  [duration](#specifying-durations) (default: 5s).
 - `max_attempts`: How many times to attempt to restart a container before giving
   up (default: never give up). If the restart does not succeed within the configured
   `window`, this attempt doesn't count toward the configured `max_attempts` value.
@@ -945,7 +954,7 @@ update.
 - `parallelism`: The number of containers to rollback at a time. If set to 0, all containers rollback simultaneously.
 - `delay`: The time to wait between each container group's rollback (default 0s).
 - `failure_action`: What to do if a rollback fails. One of `continue` or `pause` (default `pause`)
-- `monitor`: Duration after each task update to monitor for failure `(ns|us|ms|s|m|h)` (default 0s).
+- `monitor`: Duration after each task update to monitor for failure `(ns|us|ms|s|m|h)` (default 5s) **Note**: Setting to 0 will use the default 5s.
 - `max_failure_ratio`: Failure rate to tolerate during a rollback (default 0).
 - `order`: Order of operations during rollbacks. One of `stop-first` (old task is stopped before starting new one), or `start-first` (new task is started first, and the running tasks briefly overlap) (default `stop-first`).
 
@@ -958,7 +967,7 @@ updates.
 - `delay`: The time to wait between updating a group of containers.
 - `failure_action`: What to do if an update fails. One of `continue`, `rollback`, or `pause`
   (default: `pause`).
-- `monitor`: Duration after each task update to monitor for failure `(ns|us|ms|s|m|h)` (default 0s).
+- `monitor`: Duration after each task update to monitor for failure `(ns|us|ms|s|m|h)` (default 5s) **Note**: Setting to 0 will use the default 5s.
 - `max_failure_ratio`: Failure rate to tolerate during an update.
 - `order`: Order of operations during updates. One of `stop-first` (old task is stopped before starting new one), or `start-first` (new task is started first, and the running tasks briefly overlap) (default `stop-first`) **Note**: Only supported for v3.4 and higher.
 
@@ -1683,10 +1692,11 @@ ports:
 
 ### restart
 
-`no` is the default restart policy, and it does not restart a container under
+`no` is the default [restart policy](../../config/containers/start-containers-automatically.md#use-a-restart-policy), and it does not restart a container under
 any circumstance. When `always` is specified, the container always restarts. The
 `on-failure` policy restarts a container if the exit code indicates an
-on-failure error.
+on-failure error. `unless-stopped` always restarts a container, except when the
+container is stopped (manually or otherwise).
 
     restart: "no"
     restart: always
@@ -1763,7 +1773,7 @@ the service's task containers.
   in a temporary filesystem, so if you set the writable bit, it is ignored. The
   executable bit can be set. If you aren't familiar with UNIX file permission
   modes, you may find this
-  [permissions calculator](http://permissions-calculator.org/){: target="_blank" class="_" }
+  [permissions calculator](http://permissions-calculator.org/){: target="_blank" rel="noopener" class="_" }
   useful.
 
 The following example sets name of the `my_secret` to `redis_secret` within the
@@ -1891,10 +1901,10 @@ Mount a temporary file system inside the container. Size parameter specifies the
 of the tmpfs mount in bytes. Unlimited by default.
 
 ```yaml
- - type: tmpfs
-     target: /app
-     tmpfs:
-       size: 1000
+- type: tmpfs
+  target: /app
+  tmpfs:
+    size: 1000
 ```
 
 ### ulimits
@@ -2032,9 +2042,6 @@ expressed in the short form.
     created
 - `tmpfs`: configure additional tmpfs options
   - `size`: the size for the tmpfs mount in bytes
-- `consistency`: the consistency requirements of the mount, one of `consistent`
-  (host and container have identical view), `cached` (read cache, host view is
-  authoritative) or `delegated` (read-write cache, container's view is authoritative)
 
 ```yaml
 version: "{{ site.compose_file_v3 }}"
@@ -2104,39 +2111,6 @@ services:
       placement:
         constraints: [node.role == manager]
 ```
-
-#### Caching options for volume mounts (Docker Desktop for Mac)
-
-You can configure container-and-host consistency requirements for bind-mounted
-directories in Compose files to allow for better performance on read/write of
-volume mounts. These options address issues specific to `osxfs` file sharing,
-and therefore are only applicable on Docker Desktop for Mac.
-
-The flags are:
-
-* `consistent`: Full consistency. The container runtime and the host maintain an
-  identical view of the mount at all times.  This is the default.
-* `cached`: The host's view of the mount is authoritative. There may be delays
-  before updates made on the host are visible within a container.
-* `delegated`: The container runtime's view of the mount is authoritative. There
-  may be delays before updates made in a container are visible on the host.
-
-Here is an example of configuring a volume as `cached`:
-
-```yaml
-version: "{{ site.compose_file_v3 }}"
-services:
-  php:
-    image: php:7.1-fpm
-    ports:
-      - "9000"
-    volumes:
-      - .:/var/www/project:cached
-```
-
-Full detail on these flags, the problems they solve, and their
-`docker run` counterparts is in the Docker Desktop for Mac topic
-[Performance tuning for volume mounts (shared filesystems)](../../docker-for-mac/osxfs-caching.md).
 
 ### domainname, hostname, ipc, mac\_address, privileged, read\_only, shm\_size, stdin\_open, tty, user, working\_dir
 
@@ -2620,8 +2594,8 @@ networks:
 ## configs configuration reference
 
 The top-level `configs` declaration defines or references
-[configs](../../engine/swarm/configs.md) that can be granted to the services in this
-stack. The source of the config is either `file` or `external`.
+[configs](../../engine/swarm/configs.md) that can be granted to the services in
+this stack. The source of the config is either `file` or `external`.
 
 - `file`: The config is created with the contents of the file at the specified
   path.
@@ -2629,9 +2603,18 @@ stack. The source of the config is either `file` or `external`.
   created. Docker does not attempt to create it, and if it does not exist, a
   `config not found` error occurs.
 - `name`: The name of the config object in Docker. This field can be used to
-   reference configs that contain special characters. The name is used as is
-   and will **not** be scoped with the stack name. Introduced in version 3.5
-   file format.
+  reference configs that contain special characters. The name is used as is
+  and will **not** be scoped with the stack name. Introduced in version 3.5
+  file format.
+- `driver` and `driver_opts`: The name of a custom secret driver, and driver-specific
+  options passed as key/value pairs. Introduced in version 3.8 file format, and
+  only supported when using `docker stack`.
+- `template_driver`: The name of the templating driver to use, which controls
+  whether and how to evaluate the secret payload as a template. If no driver
+  is set, no templating is used. The only driver currently supported is `golang`,
+  which uses a `golang`. Introduced in version 3.8 file format, and only supported
+  when using `docker stack`. Refer to [use a templated config](../../engine/swarm/configs.md#example-use-a-templated-config)
+  for a examples of templated configs.
 
 In this example, `my_first_config` is created (as
 `<stack_name>_my_first_config)`when the stack is deployed,
@@ -2667,8 +2650,8 @@ stack.
 ## secrets configuration reference
 
 The top-level `secrets` declaration defines or references
-[secrets](../../engine/swarm/secrets.md) that can be granted to the services in this
-stack. The source of the secret is either `file` or `external`.
+[secrets](../../engine/swarm/secrets.md) that can be granted to the services in
+this stack. The source of the secret is either `file` or `external`.
 
 - `file`: The secret is created with the contents of the file at the specified
   path.
@@ -2676,9 +2659,14 @@ stack. The source of the secret is either `file` or `external`.
   created. Docker does not attempt to create it, and if it does not exist, a
   `secret not found` error occurs.
 - `name`: The name of the secret object in Docker. This field can be used to
-   reference secrets that contain special characters. The name is used as is
-   and will **not** be scoped with the stack name. Introduced in version 3.5
-   file format.
+  reference secrets that contain special characters. The name is used as is
+  and will **not** be scoped with the stack name. Introduced in version 3.5
+  file format.
+- `template_driver`: The name of the templating driver to use, which controls
+  whether and how to evaluate the secret payload as a template. If no driver
+  is set, no templating is used. The only driver currently supported is `golang`,
+  which uses a `golang`. Introduced in version 3.8 file format, and only
+  supported when using `docker stack`.
 
 In this example, `my_first_secret` is created as
 `<stack_name>_my_first_secret `when the stack is deployed,
@@ -2734,5 +2722,5 @@ stack.
 - [User guide](../index.md)
 - [Installing Compose](../install.md)
 - [Compose file versions and upgrading](compose-versioning.md)
-- [Samples](../../samples/index.md)
+- [Sample apps with Compose](../samples-for-compose.md)
 - [Command line reference](../reference/index.md)

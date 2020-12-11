@@ -95,7 +95,7 @@ configure this app to use our SQL Server database, and then create a
     > base 10 digits and/or non-alphanumeric symbols.
 
     ```yaml
-    version: "3"
+    version: "{{ site.compose_file_v3 }}"
     services:
         web:
             build: .
@@ -114,7 +114,7 @@ configure this app to use our SQL Server database, and then create a
     ports they are using, and their specific environment variables.
 
     > **Note**: You may receive an error if you choose the wrong Compose file
-    > version. Be sure to choose a verison that is compatible with your system.
+    > version. Be sure to choose a version that is compatible with your system.
 
 1.  Go to `Startup.cs` and locate the function called `ConfigureServices` (Hint:
     it should be under line 42). Replace the entire function to use the following

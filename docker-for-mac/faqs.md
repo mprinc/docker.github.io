@@ -6,34 +6,43 @@ redirect_from:
 title: Frequently asked questions (FAQ)
 ---
 
-## Stable and Edge releases
+## Docker Desktop releases
 
-### How do I get the Stable or the Edge version of Docker Desktop?
+### When will Docker Desktop move to a cumulative release stream?
 
-You can download the Stable or the Edge version of Docker Desktop from [Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-mac/).
+Starting with version 3.0.0, Docker Desktop will be available as a single, cumulative release stream. This is the same version for both Stable and Edge users. The next release after Docker Desktop 3.0.0 will be the first to be applied as a delta update. For more information, see [Automatic updates](install.md#automatic-updates).
 
-For installation instructions, see [Install Docker Desktop on Mac](install.md){: target="_blank" class="_"}.
+### How do new users install Docker Desktop?
 
-### What is the difference between the Stable and Edge versions of Docker Desktop?
+Each Docker Desktop release will also be delivered as a full installer for new users. The same will apply if you have skipped a version, although this will not normally happen as updates will be applied automatically.
 
-Two different download channels are available in the Community version of Docker Desktop:
+### How frequent will new releases be?
 
-The **Stable channel** provides a general availability release-ready installer for a fully baked and tested, more reliable app. The Stable version of Docker Desktop comes with the latest released version of Docker Engine. The release
-schedule is synched with Docker Engine releases and patch releases. On the Stable channel, you can select whether to send usage statistics and other data.
+New releases will be available roughly monthly, similar to Edge today, unless there are critical fixes that need to be released sooner.
 
-The **Edge channel** provides an installer with new features we are working on, but is not necessarily fully tested. It comes with the experimental version of Docker Engine. Bugs, crashes, and issues are more likely to occur with the Edge version, but you get a chance to preview new functionality, experiment, and provide feedback as the apps evolve. Releases are typically more frequent than for Stable, often one or more per month. Usage statistics and crash reports are sent by default. You do not have the option to disable this on the Edge channel.
+### How do I ensure that all users on my team are using the same version?
 
-### Can I switch between Stable and Edge versions of Docker Desktop?
+Previously you had to manage this yourself: now it will happen automatically as a side effect of all users being on the latest version.
 
-Yes, you can switch between Stable and Edge versions. You can try out the Edge releases to see what's new, then go back to Stable for other work. However, **you can only have one version of Docker Desktop installed at a time**. For more information, see [Switch between Stable and Edge versions](install.md#switch-between-stable-and-edge-versions).
+### My colleague has got a new version but I haven’t got it yet.
 
-### What is Docker.app?
+Sometimes we may roll out a new version gradually over a few days. Therefore, if you wait, it will turn up soon. Alternatively, you can select **Check for Updates** from the Docker menu to jump the queue and get the latest version immediately.
+
+### Where can I find information about Stable and Edge releases?
+
+Starting with Docker Desktop 3.0.0, Stable and Edge releases are combined into a single, cumulative release stream for all users.
+
+## What is Docker.app?
 
 `Docker.app` is Docker Desktop on Mac. It bundles the Docker client and Docker Engine. `Docker.app` uses the macOS Hypervisor.framework to run containers, which means that a separate VirtualBox is not required to run Docker Desktop.
 
 ## What are the system requirements for Docker Desktop?
 
-You need a Mac that supports hardware virtualization. For more information, see [Docker Desktop Mac system requirements](install/#system-requirements).
+You need a Mac that supports hardware virtualization. For more information, see [Docker Desktop Mac system requirements](install.md#system-requirements).
+
+## Is Docker Desktop compatible with Apple silicon processors?
+
+At the moment, Docker Desktop is compatible with Intel processors only. You can follow the status of Apple Silicon support in our [roadmap](https://github.com/docker/roadmap/issues/142){:target="_blank" rel="noopener" class="_"}.
 
 ## What is an experimental feature?
 
@@ -50,9 +59,9 @@ On Docker Desktop, clients can connect to the Docker Engine through a Unix
 socket: `unix:///var/run/docker.sock`.
 
 See also [Docker Engine API](../engine/api/index.md) and Docker Desktop for Mac forums topic
-[Using pycharm Docker plugin..](https://forums.docker.com/t/using-pycharm-docker-plugin-with-docker-beta/8617){: target="_blank" class="_"}.
+[Using pycharm Docker plugin..](https://forums.docker.com/t/using-pycharm-docker-plugin-with-docker-beta/8617){: target="_blank" rel="noopener" class="_"}.
 
-If you are working with applications like [Apache Maven](https://maven.apache.org/){: target="_blank" class="_"}
+If you are working with applications like [Apache Maven](https://maven.apache.org/){: target="_blank" rel="noopener" class="_"}
 that expect settings for `DOCKER_HOST` and `DOCKER_CERT_PATH` environment
 variables, specify these to connect to Docker instances through Unix sockets.
 For example:
@@ -74,11 +83,7 @@ For more information and examples, see
 We recommend that you publish a port, or connect from another container. You can use the same method on Linux if the container is on an overlay network and not a bridge network, as these are not routed.
 
 For more information and examples, see
-[I want to connect to a container from the Mac](networking.md#i-want-to-connect-to-a-container-from-the-mac) in the [Networking](/docker-for-mac/networking/) topic.
-
-### Can I use an SSH agent inside a container?
-
-Yes, you can use the host’s SSH agent inside a container. For more information, see [SSH agent forwarding](osxfs.md#ssh-agent-forwarding).
+[I want to connect to a container from the Mac](networking.md#i-want-to-connect-to-a-container-from-the-mac) in the [Networking](networking.md) topic.
 
 ### How do I add custom CA certificates?
 
@@ -97,7 +102,12 @@ serial port) to a container as it requires support at the hypervisor level.
 
 ### Can I run Docker Desktop in nested virtualization scenarios?
 
-Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or VMware Fusion on a Mac provided that the VM is properly configured. However, problems and intermittent failures may still occur due to the way these apps virtualize the hardware. For these reasons, **Docker Desktop is not supported in nested virtualization scenarios**. It might work in some cases, and not in others. For more information, see [Running Docker Desktop in nested virtualization scenarios](/docker-for-windows/troubleshoot/#running-docker-desktop-in-nested-virtualization-scenarios).
+Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or
+VMware Fusion on a Mac provided that the VM is properly configured. However,
+problems and intermittent failures may still occur due to the way these apps
+virtualize the hardware. For these reasons, **Docker Desktop is not supported in
+nested virtualization scenarios**. It might work in some cases, and not in others.
+For more information, see [Running Docker Desktop in nested virtualization scenarios](../docker-for-windows/troubleshoot.md#running-docker-desktop-in-nested-virtualization-scenarios).
 
 ## Components of Docker Desktop
 
@@ -133,10 +143,10 @@ functionality you'd like to see added.
 You can find information about diagnosing and troubleshooting common issues in the [Logs and Troubleshooting](troubleshoot) topic.
 
 If you do not find a solution in Troubleshooting, browse issues on
-[Docker Desktop for Mac issues on GitHub](https://github.com/docker/for-mac/issues){: target="_blank" class="_"} or create a new one. You can also create new issues based on diagnostics. To learn more, see
+[Docker Desktop for Mac issues on GitHub](https://github.com/docker/for-mac/issues){: target="_blank" rel="noopener" class="_"} or create a new one. You can also create new issues based on diagnostics. To learn more, see
 [Diagnose problems, send feedback, and create GitHub issues](troubleshoot.md#diagnose-problems-send-feedback-and-create-github-issues).
 
-The [Docker Desktop for Mac forum](https://forums.docker.com/c/docker-for-mac){: target="_blank" class="_"}
+The [Docker Desktop for Mac forum](https://forums.docker.com/c/docker-for-mac){: target="_blank" rel="noopener" class="_"}
 provides discussion threads as well, and you can create discussion topics there,
 but we recommend using the GitHub issues over the forums for better tracking and
 response.
@@ -144,7 +154,7 @@ response.
 ### How can I opt out of sending my usage data?
 
 If you do not want to send of usage data, use the Stable channel. For more
-information, see [What is the difference between the Stable and Edge versions of Docker Desktop](#stable-and-edge-channels).
+information, see [What is the difference between the Stable and Edge versions of Docker Desktop](#stable-and-edge-releases).
 
 ### How is personal data handled in Docker Desktop?
 

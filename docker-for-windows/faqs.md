@@ -4,29 +4,31 @@ keywords: windows faqs
 title: Frequently asked questions (FAQ)
 ---
 
-## Stable and Edge releases
+## Docker Desktop releases
 
-### How do I get the Stable or the Edge version of Docker Desktop?
+### When will Docker Desktop move to a cumulative release stream?
 
-You can download the Stable or the Edge version of Docker Desktop from [Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows/).
+Starting with version 3.0.0, Docker Desktop will be available as a single, cumulative release stream. This is the same version for both Stable and Edge users. The next release after Docker Desktop 3.0.0 will be the first to be applied as a delta update. For more information, see [Automatic updates](install.md#automatic-updates).
 
-For installation instructions, see [Install Docker Desktop on Windows](install.md){: target="_blank" class="_"}.
+### How do new users install Docker Desktop?
 
-### What is the difference between the Stable and Edge versions of Docker Desktop?
+Each Docker Desktop release will also be delivered as a full installer for new users. The same will apply if you have skipped a version, although this will not normally happen as updates will be applied automatically.
 
-Two different download channels are available in the Community version of Docker Desktop:
+### How frequent will new releases be?
 
-The **Stable channel** provides a general availability release-ready installer
-for a fully baked and tested, more reliable app. The Stable version of Docker
-Desktop includes the latest released version of Docker Engine. The
-release schedule is synced with Docker Engine releases and patch releases. On the Stable channel, you can select whether to send usage statistics and other data.
+New releases will be available roughly monthly, similar to Edge today, unless there are critical fixes that need to be released sooner.
 
-The **Edge channel** provides an installer with new features we are working on, but is not necessarily fully tested. It includes the experimental version of
-Docker Engine. Bugs, crashes, and issues can occur when using the Edge version, but you get a chance to preview new functionality, experiment, and provide feedback as Docker Desktop evolves. Edge releases are typically more frequent than for Stable, often one or more per month. Usage statistics and crash reports are sent by default. You do not have the option to disable this on the Edge channel.
+### How do I ensure that all users on my team are using the same version?
 
-### Can I switch between Stable and Edge versions of Docker Desktop?
+Previously you had to manage this yourself: now it will happen automatically as a side effect of all users being on the latest version.
 
-Yes, you can switch between Stable and Edge versions. You can try out the Edge releases to see what's new, then go back to Stable for other work. However, **you can only have one version of Docker Desktop installed at a time**. For more information, see [Switch between Stable and Edge versions](install.md#switch-between-stable-and-edge-versions).
+### My colleague has got a new version but I haven’t got it yet.
+
+Sometimes we may roll out a new version gradually over a few days. Therefore, if you wait, it will turn up soon. Alternatively, you can select **Check for Updates** from the Docker menu to jump the queue and get the latest version immediately.
+
+### Where can I find information about Stable and Edge releases?
+
+Starting with Docker Desktop 3.0.0, Stable and Edge releases are combined into a single, cumulative release stream for all users.
 
 ## What are the system requirements for Docker Desktop?
 
@@ -49,7 +51,7 @@ On Docker Desktop, clients can connect to the Docker Engine through a
 This sets `DOCKER_HOST` and `DOCKER_CERT_PATH` environment variables to the
 given values (for the named pipe or TCP socket, whichever you use).
 
-See also [Docker Engine API](../engine/api/index.md) and the Docker Desktop for Windows forums topic [How to find the remote API](https://forums.docker.com/t/how-to-find-the-remote-api/20988){: target="_blank" class="_"}.
+See also [Docker Engine API](../engine/api/index.md) and the Docker Desktop for Windows forums topic [How to find the remote API](https://forums.docker.com/t/how-to-find-the-remote-api/20988){: target="_blank" rel="noopener" class="_"}.
 
 ### How do I connect from a container to a service on the host?
 
@@ -74,7 +76,7 @@ For more information and examples, see
 No, at this point, Docker Desktop does not enable you to control (`chmod`)
 the Unix-style permissions on [shared volumes](index.md#file-sharing) for
 deployed containers, but rather sets permissions to a default value of
-[0777](http://permissions-calculator.org/decode/0777/){: target="_blank" class="_"}
+[0777](http://permissions-calculator.org/decode/0777/){: target="_blank" rel="noopener" class="_"}
 (`read`, `write`, `execute` permissions for `user` and for 
 `group`) which is not configurable.
 
@@ -113,18 +115,23 @@ Docker Desktop can run inside a Windows 10 VM running on apps like Parallels or 
 
 ### Can I use VirtualBox alongside Docker Desktop?
 
-Yes, you can run VirtualBox along with Docker Desktop if you have enabled the [ Windows Hypervisor Platform](https://docs.microsoft.com/en-us/virtualization/api/){: target="_blank" class="_"} feature on your machine.
+Yes, you can run VirtualBox along with Docker Desktop if you have enabled the [ Windows Hypervisor Platform](https://docs.microsoft.com/en-us/virtualization/api/){: target="_blank" rel="noopener" class="_"} feature on your machine.
 
 ## Windows requirements
 
-### How do I run Windows containers on Docker Desktop on Windows Server?
+### Can I run Docker Desktop on Windows Server?
 
-You can find a tutorial about running Windows containers on Windows Server in
-[Getting Started with Windows Containers](https://github.com/docker/labs/blob/master/windows/windows-containers/README.md){: target="_blank" class="_"}.
+No, running Docker Desktop on Windows Server is not supported.
+
+### How do I run Windows containers on Windows Server?
+
+You can install a native Windows binary which allows you to develop and run
+Windows containers without Docker Desktop. For more information, see the tutorial about running Windows containers on Windows Server in
+[Getting Started with Windows Containers](https://github.com/docker/labs/blob/master/windows/windows-containers/README.md){: target="_blank" rel="noopener" class="_"}.
 
 ### Can I install Docker Desktop on Windows 10 Home?
 
-Windows 10 Insider Preview (Windows 10 Home) users can now install [Docker Desktop Edge 2.2.2.0](https://download.docker.com/win/edge/43066/Docker%20Desktop%20Installer.exe) or a later release with the [experimental WSL 2 support](wsl-tech-preview.md). This requires Windows Insider Preview Build 19018 or later.
+Windows 10 Home, version 2004 users can now install [Docker Desktop Stable 2.3.0.2](https://hub.docker.com/editions/community/docker-ce-desktop-windows/) or a later release with the [WSL 2 backend](wsl.md).
 
 Docker Desktop Stable releases require the Hyper-V feature which is not available in the Windows 10 Home edition.
 
@@ -152,11 +159,11 @@ functionality you'd like to see added.
 You can find information about diagnosing and troubleshooting common issues in the [Logs and Troubleshooting](troubleshoot.md) topic.
 
 If you do not find a solution in Troubleshooting, browse issues on
-[Docker Desktop for Windows issues on GitHub](https://github.com/docker/for-win/issues){: target="_blank" class="_"}
+[Docker Desktop for Windows issues on GitHub](https://github.com/docker/for-win/issues){: target="_blank" rel="noopener" class="_"}
 or create a new one. You can also create new issues based on diagnostics. To learn more, see
 [Diagnose problems, send feedback, and create GitHub issues](troubleshoot.md#diagnose-problems-send-feedback-and-create-github-issues).
 
-The [Docker Desktop for Windows forum](https://forums.docker.com/c/docker-for-windows){: target="_blank" class="_"}
+The [Docker Desktop for Windows forum](https://forums.docker.com/c/docker-for-windows){: target="_blank" rel="noopener" class="_"}
 contains discussion threads. You can also create discussion topics there,
 but we recommend using the GitHub issues over the forums for better tracking and
 response.

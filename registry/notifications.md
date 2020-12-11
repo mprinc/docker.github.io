@@ -4,6 +4,8 @@ keywords: registry, on-prem, images, tags, repository, distribution, notificatio
 title: Work with notifications
 ---
 
+{% include registry.md %}
+
 The Registry supports sending webhook notifications in response to events
 happening within the registry. Notifications are sent in response to manifest
 pushes and pulls and layer pushes and pulls. These actions are serialized into
@@ -170,7 +172,7 @@ Content-Type: application/vnd.docker.distribution.events.v1+json
             "length": 1,
             "digest": "sha256:fea8895f450959fa676bcc1df0611ea93823a735a01205fd8622846041d0c7cf",
             "repository": "library/test",
-            "url": "http://example.com/v2/library/test/manifests/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
+            "url": "https://example.com/v2/library/test/manifests/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
          },
          "request": {
             "id": "asdfasdf",
@@ -195,7 +197,7 @@ Content-Type: application/vnd.docker.distribution.events.v1+json
             "length": 2,
             "digest": "sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5",
             "repository": "library/test",
-            "url": "http://example.com/v2/library/test/blobs/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
+            "url": "https://example.com/v2/library/test/blobs/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
          },
          "request": {
             "id": "asdfasdf",
@@ -220,7 +222,7 @@ Content-Type: application/vnd.docker.distribution.events.v1+json
             "length": 3,
             "digest": "sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5",
             "repository": "library/test",
-            "url": "http://example.com/v2/library/test/blobs/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
+            "url": "https://example.com/v2/library/test/blobs/sha256:c3b3692957d439ac1928219a83fac91e7bf96c153725526874673ae1f2023f8d5"
          },
          "request": {
             "id": "asdfasdf",
